@@ -7,14 +7,15 @@ using UnityEngine.UIElements;
 public class WallScript : MonoBehaviour
 {
     [SerializeField]
-    private Transform[] PlayerTransform;
-    [SerializeField]
     private Material m_Material;
     private Color targetColor;
     private Color currentColor;
+    private Test test;
+    private bool PlayerNear;
     // Start is called before the first frame update
     void Start()
     {
+        test = FindObjectOfType<Test>();
         m_Material = gameObject.GetComponent<Renderer>().material;
         currentColor = m_Material.color;
         targetColor = m_Material.color;
@@ -24,13 +25,8 @@ public class WallScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if(Input.GetKeyDown(KeyCode.K))
-        {
-            for(int i = 0; i < PlayerTransform.Length; i++)
-            {
-                PlayerTransform[i] = FindObjectOfType<PlayerMovementOnMap>().gameObject.transform;
-            }
-        }*/
+        
+                
         if (currentColor.a < targetColor.a)
         {
             currentColor.a += 0.01f;
@@ -39,17 +35,26 @@ public class WallScript : MonoBehaviour
         {
             currentColor.a -= 0.01f;
         }
-        for (int i = 0; i < PlayerTransform.Length; i++)
+
+
+        if (PlayerNear)
         {
-            if (transform.position.x + 5 == PlayerTransform[i].position.x && Vector3.Distance(PlayerTransform[i].position, transform.position) < 10)
-            {
-                targetColor = new Color(m_Material.color.r, m_Material.color.g, m_Material.color.b, 0.5f);
-            }
-            else
-            {
-                targetColor = new Color(m_Material.color.r, m_Material.color.g, m_Material.color.b, 1f);
-            }
+            targetColor = new Color(m_Material.color.r, m_Material.color.g, m_Material.color.b, 0.5f);
         }
+        else 
+        { 
+            targetColor = new Color(m_Material.color.r, m_Material.color.g, m_Material.color.b, 1f);
+        }
+        
         m_Material.color = currentColor;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        PlayerNear = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        PlayerNear = false;
     }
 }

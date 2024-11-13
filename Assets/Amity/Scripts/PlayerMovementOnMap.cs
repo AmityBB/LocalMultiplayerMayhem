@@ -14,12 +14,14 @@ public class PlayerMovementOnMap : MonoBehaviour
     public int Stepsleft = 0;
     private Transform m_position;
     private bool canMove = true;
-
+    private Test test;
 
     private void Start()
     {
+        test = FindObjectOfType<Test>();
         this.transform.position = new Vector3(5, 3, -35);
         targetPos = transform.position;
+        test.player.Add(this);
     }
 
     private void Update()
