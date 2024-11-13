@@ -5,14 +5,30 @@ using UnityEngine;
 public class WinSystem : MonoBehaviour
 {
     [SerializeField] private List<GameObject> Rooms = new List<GameObject>();
-    [SerializeField] private List<GameObject> Wapons = new List<GameObject>();
+    [SerializeField] private List<GameObject> Weapons = new List<GameObject>();
     [SerializeField] private List<GameObject> People = new List<GameObject>();
-    private int roomK;
-    private int killerK;
-    private int waponK;
-    public int chosenRoom;
-    public int chosenKiller;
-    public int chosenWapon;
+
+    [SerializeField] private int roomK;
+    [SerializeField] private int killerK;
+    [SerializeField] private int weaponK;
+
+    public int chosenRoom = -1;
+    public int chosenKiller = -1;
+    public int chosenWeapon = -1;
+
+    private static WinSystem instanse;
+    private void Awake()
+    {
+        if (instanse == null)
+        {
+            instanse = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject); 
+    }
     void Start()
     {
         rand();
@@ -26,7 +42,7 @@ public class WinSystem : MonoBehaviour
     {
         roomK = Random.Range(0, Rooms.Count);
         killerK = Random.Range(0, People.Count);
-        waponK = Random.Range(0, Wapons.Count);
+        weaponK = Random.Range(0, Weapons.Count);
     }
     public void Check()
     {
@@ -41,11 +57,11 @@ public class WinSystem : MonoBehaviour
 
         if (WaponCheck())
         {
-            //corret waponK
+            //corret weaponK
         }
         else
         {
-            //incorret waponK
+            //incorret weaponK
         }
 
         if (KillerCheck())
@@ -80,7 +96,7 @@ public class WinSystem : MonoBehaviour
 
     bool WaponCheck()
     {
-        if (Wapons[chosenWapon] == Wapons[waponK])
+        if (Weapons[chosenWeapon] == Weapons[weaponK])
         {
             return true;
         }
