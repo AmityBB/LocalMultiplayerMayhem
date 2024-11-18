@@ -10,31 +10,54 @@ public class Test : MonoBehaviour
     private Camera Cam;
     private bool Active;
     private GameObject clone;
-    [SerializeField]
-    private float scale;
+    public GameObject confirmButton;
 
     void Start()
     {
         Cam = FindObjectOfType<Camera>();
     }
 
-    void Update()
+    private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (!Active)
-            {
-                Cam.transform.rotation = new Quaternion(0, 0, 0, 0);
-                clone = Instantiate(MagGlass, Cam.transform.position + (Cam.transform.forward * 5), Quaternion.Euler(-90, 0, 0));
-                Active = true;
-            }
-            else 
-            { 
-                Cam.transform.rotation = Quaternion.Euler(60, 0, 0);
-                Destroy(clone);
-                Active = false;
-            }
+            PrintMinigame();
         }
-        clone.transform.position = new Vector3(clone.transform.position.x, clone.transform.position.y, clone.transform.position.z + Input.mouseScrollDelta.y * scale);
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            UVMinigame();
+        }
+        if( Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SortingMinigame();
+        }
+    }
+
+    private void PrintMinigame()
+    {
+        if (!Active)
+        {
+            Cam.transform.rotation = new Quaternion(0, 0, 0, 0);
+            clone = Instantiate(MagGlass, Cam.transform.position + (Cam.transform.forward * 5), Quaternion.Euler(-90, 0, 0));
+            confirmButton.SetActive(true);
+            Active = true;
+        }
+        else
+        {
+            Cam.transform.rotation = Quaternion.Euler(60, 0, 0);
+            Destroy(clone);
+            confirmButton.SetActive(false);
+            Active = false;
+        }
+    }
+
+    private void UVMinigame()
+    {
+
+    }
+
+    private void SortingMinigame()
+    {
+
     }
 }

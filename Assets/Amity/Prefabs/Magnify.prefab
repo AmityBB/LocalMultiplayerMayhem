@@ -265,6 +265,7 @@ MonoBehaviour:
   Distance: 4
   TargetZoom: 0
   MagView: {fileID: 7037883342767861290}
+  scale: 0.05
 --- !u!114 &8353575344494918625
 MonoBehaviour:
   m_ObjectHideFlags: 0

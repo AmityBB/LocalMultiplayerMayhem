@@ -48,7 +48,7 @@ public class PlayerMovementOnMap : MonoBehaviour
 
     public void DiceRoll()
     {
-        Stepsleft += Random.Range(1, 7);
+        Stepsleft += Random.Range(1, 7) + Random.Range(1, 7);
     }
 
     public void Movement(CallbackContext _context)
