@@ -17,6 +17,7 @@ public class ButtonCheck : MonoBehaviour
     [SerializeField] private List<Sprite> imagePeopleList;
     [SerializeField] private List<Sprite> imageRoomList;
     [SerializeField] private List<Sprite> imageWeaponList;
+
     WinSystem winSystem;
     private void Start()
     {

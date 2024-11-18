@@ -6,6 +6,8 @@ using TMPro;
 
 public class WinSystem : MonoBehaviour
 {
+    public List<PlayerInfo> Players = new List<PlayerInfo>();
+
     public List<GameObject> People = new List<GameObject>();
     public List<GameObject> Rooms = new List<GameObject>();
     public List<GameObject> Weapons = new List<GameObject>();
@@ -15,6 +17,11 @@ public class WinSystem : MonoBehaviour
     public int weaponK;
 
     private static WinSystem instanse;
+
+    public int playerTurn;
+    public int turns;
+
+    Test test;
     private void Awake()
     {
         if (instanse == null)
@@ -29,12 +36,52 @@ public class WinSystem : MonoBehaviour
     }
     void Start()
     {
-       rand();
+        for (int i = 0; i < Players.Count; i++)
+        {
+            test.player[i].enabled = false;
+        }
+        
+        rand();
+        test = FindObjectOfType<Test>();
+    }
+
+    void next()
+    {
+        Players[playerTurn].pos = test.player[playerTurn].transform.position;
+        test.player[playerTurn].enabled = false;
+        playerTurn++;
+        if (playerTurn > Players.Count)
+        {
+            playerTurn = 0;
+        }
+        test.player[playerTurn].enabled = true;
+    }
+    void getWeapon()
+    {
+        for (int i = 0;i < Players[playerTurn].weapons.Count; i++)
+        {
+            if (Players[playerTurn].weapons.Contains(gameObject) == false)
+            {
+                Players[playerTurn].weapons.Add(gameObject);
+            }
+        }
     }
 
     void Update()
     {
-
+        test.player[playerTurn].enabled = true;
+        for (int i = playerTurn; i> playerTurn; i++)
+        {
+            if (playerTurn == i)
+            {
+                getWeapon();
+            }
+        }
+        
+        for (int i = 0; i < Players.Count; i++)
+        {
+            
+        }
     }
     void rand()
     {
