@@ -12,13 +12,12 @@ public class Test : MonoBehaviour
     private GameObject clone;
     [SerializeField]
     private float scale;
-    // Start is called before the first frame update
+
     void Start()
     {
         Cam = FindObjectOfType<Camera>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.E))

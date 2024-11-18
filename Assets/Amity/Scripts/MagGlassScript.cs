@@ -11,9 +11,6 @@ public class MagGlassScript : MonoBehaviour
     [SerializeField]
     private float Distance;
     public float TargetZoom;
-
-    private Vector3 screenPoint;
-    private Vector3 offset;
     [SerializeField] 
     private Camera MagView;
     
@@ -25,36 +22,23 @@ public class MagGlassScript : MonoBehaviour
 
     private void Update()
     {
-        if(transform.position.z > -34.01004)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, -34.01004f);
-        }
-        if(transform.position.z < -36.81)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, -36.81f);
-        }
+        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Clamp(transform.position.z, -36.81f, -34.01004f));
+        
         if(Math.Abs(transform.position.z - TargetZoom) < 0.05)
         {
             MagView.GetComponent<PostProcessVolume>().enabled = false;
+            StartCoroutine(CorrectZoomTimer());
         }
         else
         {
             MagView.GetComponent<PostProcessVolume>().enabled = true;
+            StopAllCoroutines();
         }
     }
 
-    private void OnMouseDown()
+    IEnumerator CorrectZoomTimer()
     {
-        screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-
-        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-    }
-
-    private void OnMouseDrag()
-    {
-        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-
-        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-        transform.position = curPosition;
+        yield return new WaitForSeconds(3);
+        Debug.Log("Right zoom used, start fingerprint comparison section");
     }
 }
