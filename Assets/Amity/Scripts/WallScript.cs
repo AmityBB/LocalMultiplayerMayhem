@@ -10,19 +10,15 @@ public class WallScript : MonoBehaviour
     private Material m_Material;
     private Color targetColor;
     private Color currentColor;
-    private Test test;
     private bool PlayerNear;
-    // Start is called before the first frame update
+
     void Start()
     {
-        test = FindObjectOfType<Test>();
         m_Material = gameObject.GetComponent<Renderer>().material;
         currentColor = m_Material.color;
         targetColor = m_Material.color;
-        /*PlayerTransform = FindObjectOfType<PlayerMovementOnMap>().gameObject.transform;*/
     }
 
-    // Update is called once per frame
     void Update()
     {
         

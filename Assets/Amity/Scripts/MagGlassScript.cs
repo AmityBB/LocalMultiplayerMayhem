@@ -1,38 +1,44 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.PostProcessing;
 
 public class MagGlassScript : MonoBehaviour
 {
     [SerializeField]
     private float Distance;
-    // Start is called before the first frame update
-    void Start()
+    public float TargetZoom;
+    [SerializeField] 
+    private Camera MagView;
+    
+
+    private void Start()
     {
-        
+        TargetZoom = UnityEngine.Random.Range(-34.01004f, -36.81f);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Clamp(transform.position.z, -36.81f, -34.01004f));
         
-        if (Input.GetMouseButton(0))
+        if(Math.Abs(transform.position.z - TargetZoom) < 0.05)
         {
-            Vector3 point = new Vector3();
-            Vector2 mousePos = new Vector2();
-
-            mousePos.x = Input.mousePosition.x;
-            mousePos.y = Camera.main.pixelHeight/10 + Input.mousePosition.y;
-
-            point = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.nearClipPlane));
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if(Physics.Raycast(ray, out hit, 100))
-            {
-                gameObject.transform.position = point + (Camera.main.transform.forward * Distance);
-            }
+            MagView.GetComponent<PostProcessVolume>().enabled = false;
+            StartCoroutine(CorrectZoomTimer());
         }
+        else
+        {
+            MagView.GetComponent<PostProcessVolume>().enabled = true;
+            StopAllCoroutines();
+        }
+    }
+
+    IEnumerator CorrectZoomTimer()
+    {
+        yield return new WaitForSeconds(3);
+        Debug.Log("Right zoom used, start fingerprint comparison section");
     }
 }

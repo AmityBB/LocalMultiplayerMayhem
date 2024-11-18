@@ -12,12 +12,15 @@ public class PlayerMovementOnMap : MonoBehaviour
     private Vector3 targetPos;
 
     public int Stepsleft = 0;
-    private Transform m_position;
     private bool canMove = true;
     private Test test;
+    private WinSystem winscript;
+
+    public TextMeshProUGUI textMeshProUGUI;
 
     private void Start()
     {
+        textMeshProUGUI = FindObjectOfType<TextMeshProUGUI>();
         test = FindObjectOfType<Test>();
         this.transform.position = new Vector3(5, 3, -35);
         targetPos = transform.position;
@@ -26,6 +29,11 @@ public class PlayerMovementOnMap : MonoBehaviour
 
     private void Update()
     {
+        textMeshProUGUI.text = "steps:" + Stepsleft.ToString();
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            DiceRoll();
+        }
         this.transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 8);
         if (Vector3.Distance(transform.position, targetPos) < 0.25f)
         {
@@ -37,9 +45,14 @@ public class PlayerMovementOnMap : MonoBehaviour
             canMove = false;
         }
     }
+
+    public void DiceRoll()
+    {
+        Stepsleft += Random.Range(1, 7);
+    }
+
     public void Movement(CallbackContext _context)
     {
-        Debug.Log(_context);
         if (_context.performed && Stepsleft > 0 && canMove)
         {
             if (_context.control.ToString() == "Key:/Keyboard/a" || _context.control.ToString() == "Key:/Keyboard/d")
@@ -82,5 +95,10 @@ public class PlayerMovementOnMap : MonoBehaviour
                 MoveDir.z = 0;
             }
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+       /* winscript.getWeapon(collision.gameobject);*/
     }
 }
