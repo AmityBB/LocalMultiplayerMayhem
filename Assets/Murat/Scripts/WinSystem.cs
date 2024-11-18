@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class WinSystem : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> Rooms = new List<GameObject>();
-    [SerializeField] private List<GameObject> Weapons = new List<GameObject>();
-    [SerializeField] private List<GameObject> People = new List<GameObject>();
+    public List<PlayerInfo> Players = new List<PlayerInfo>();
 
-    [SerializeField] private int roomK;
-    [SerializeField] private int killerK;
-    [SerializeField] private int weaponK;
+    public List<GameObject> People = new List<GameObject>();
+    public List<GameObject> Rooms = new List<GameObject>();
+    public List<GameObject> Weapons = new List<GameObject>();
 
-    public int chosenRoom = -1;
-    public int chosenKiller = -1;
-    public int chosenWeapon = -1;
+    public int killerK;
+    public int roomK;
+    public int weaponK;
 
     private static WinSystem instanse;
+
+    public int playerTurn;
+    public int turns;
+
+    Test test;
     private void Awake()
     {
         if (instanse == null)
@@ -27,94 +32,63 @@ public class WinSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(this.gameObject); 
+        DontDestroyOnLoad(this.gameObject);
     }
     void Start()
     {
+        for (int i = 0; i < Players.Count; i++)
+        {
+            test.player[i].enabled = false;
+        }
+        
         rand();
+        test = FindObjectOfType<Test>();
+    }
+
+    void next()
+    {
+        Players[playerTurn].pos = test.player[playerTurn].transform.position;
+        test.player[playerTurn].enabled = false;
+        playerTurn++;
+        if (playerTurn > Players.Count)
+        {
+            playerTurn = 0;
+        }
+        test.player[playerTurn].enabled = true;
+    }
+    void getWeapon()
+    {
+        for (int i = 0;i < Players[playerTurn].weapons.Count; i++)
+        {
+            if (Players[playerTurn].weapons.Contains(gameObject) == false)
+            {
+                Players[playerTurn].weapons.Add(gameObject);
+            }
+        }
     }
 
     void Update()
     {
+        test.player[playerTurn].enabled = true;
+        for (int i = playerTurn; i> playerTurn; i++)
+        {
+            if (playerTurn == i)
+            {
+                getWeapon();
+            }
+        }
         
+        for (int i = 0; i < Players.Count; i++)
+        {
+            
+        }
     }
     void rand()
     {
-        roomK = Random.Range(0, Rooms.Count);
         killerK = Random.Range(0, People.Count);
+        roomK = Random.Range(0, Rooms.Count);
         weaponK = Random.Range(0, Weapons.Count);
     }
-    public void Check()
-    {
-        if (RoomCheck())
-        {
-            //corret roomK
-        }
-        else
-        {
-            //incorret roomK
-        }
-
-        if (WaponCheck())
-        {
-            //corret weaponK
-        }
-        else
-        {
-            //incorret weaponK
-        }
-
-        if (KillerCheck())
-        {
-            //corret person
-        }
-        else
-        {
-            //incorret person
-        }
-
-        if (RoomCheck()&& WaponCheck() && KillerCheck())
-        {
-            //you win
-        }else
-        {
-            //you lose
-        }
-    }
-
-    bool RoomCheck()
-    {
-        if (Rooms[chosenRoom] == Rooms[roomK])
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    bool WaponCheck()
-    {
-        if (Weapons[chosenWeapon] == Weapons[weaponK])
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    bool KillerCheck()
-    {
-        if (People[chosenKiller] == People[killerK])
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 }
+
+
