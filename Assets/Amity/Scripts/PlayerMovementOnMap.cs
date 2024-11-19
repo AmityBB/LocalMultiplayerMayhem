@@ -13,7 +13,7 @@ public class PlayerMovementOnMap : MonoBehaviour
 
     public int Stepsleft = 0;
     private bool canMove = true;
-    private bool canRoll;
+    private bool canRoll = true;
     private Test test;
     private WinSystem gameManager;
     [SerializeField] private BoxCollider PlayerBlocker;
@@ -81,14 +81,27 @@ public class PlayerMovementOnMap : MonoBehaviour
             {
                 MoveDir.z = 0;
             }
-
+            transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
             RaycastHit Hit;
             if (!Physics.Raycast(transform.position, MoveDir, out Hit, 6))
             {
-                if (MoveDir.x > 0) { MoveDir.x = 10; }
-                if (MoveDir.x < 0) { MoveDir.x = -10; }
-                if (MoveDir.z > 0) { MoveDir.z = 10; }
-                if (MoveDir.z < 0) { MoveDir.z = -10; }
+                transform.rotation = Quaternion.LookRotation(MoveDir);
+                if (MoveDir.x > 0) 
+                { 
+                    MoveDir.x = 10;
+                }
+                if (MoveDir.x < 0) 
+                {
+                    MoveDir.x = -10;
+                }
+                if (MoveDir.z > 0) 
+                {
+                    MoveDir.z = 10;
+                }
+                if (MoveDir.z < 0) 
+                {
+                    MoveDir.z = -10;
+                }
                 targetPos = this.transform.localPosition + MoveDir;
                 Stepsleft--;
             }
