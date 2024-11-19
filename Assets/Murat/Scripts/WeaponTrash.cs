@@ -44,13 +44,13 @@ public class WeaponTrash : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, 46, transform.position.z);
             }
-            if (transform.position.z >= 2)
+            if (transform.position.z >= 3)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, 2);
+                transform.position = new Vector3(transform.position.x, transform.position.y, 3);
             }
-            else if(transform.position.z <= -2)
+            else if(transform.position.z <= -3)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, -2);
+                transform.position = new Vector3(transform.position.x, transform.position.y, -3);
             }
         }
 
@@ -63,22 +63,22 @@ public class WeaponTrash : MonoBehaviour
         {
             if (isTrash)
             {
-                if (gameObject.transform.position.x > 3)
+                if (gameObject.transform.position.x > 3.5f)
                 {
                     getpoints();
                 }
-                else if (gameObject.transform.position.x < -3)
+                else if (gameObject.transform.position.x < -3.5f)
                 {
                     getdeathPoints();
                 }
             }
             if (!isTrash)
             {
-                if (gameObject.transform.position.x < -3)
+                if (gameObject.transform.position.x < -3.5f)
                 {
                     getpoints();
                 }
-                else if (gameObject.transform.position.x > 3)
+                else if (gameObject.transform.position.x > 3.5f)
                 {
                     getdeathPoints();
                 }
@@ -94,7 +94,7 @@ public class WeaponTrash : MonoBehaviour
                 if (correct&& !done2)
                 {
                     SorteerMinigame.trash.Add(gameObject);
-                    transform.position = new Vector3(6, 46, 5 + SorteerMinigame.trash.Count*-2.5f);
+                    transform.position = new Vector3(6, 46, 7.5f + SorteerMinigame.trash.Count*-2.5f);
                     done2 = true;
                 }
                 else if(!correct)
@@ -110,7 +110,7 @@ public class WeaponTrash : MonoBehaviour
                 if (correct&& !done2)
                 {
                     SorteerMinigame.weapons.Add(gameObject);
-                    transform.position = new Vector3(-6, 46, 5 + SorteerMinigame.weapons.Count * -2.5f);
+                    transform.position = new Vector3(-6, 46, 7.5f + SorteerMinigame.weapons.Count * -2.5f);
                     done2 = true;
                 }
                 else if(!correct)
