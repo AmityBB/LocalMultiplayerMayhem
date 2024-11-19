@@ -78,7 +78,8 @@ public class WinSystem : MonoBehaviour
     {
         if (SorteerMinigame.active)
         {
-            SorteerMinigame.Cam.transform.position = new Vector3(0, 50, -10);
+            SorteerMinigame.Cam.transform.position = new Vector3(0, 55, -10); 
+            SorteerMinigame.Cam.transform.rotation = Quaternion.Euler(45, 0, 0);
         }
         else
         {
