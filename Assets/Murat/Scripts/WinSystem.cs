@@ -23,6 +23,7 @@ public class WinSystem : MonoBehaviour
     private static WinSystem instanse;
     private Test test;
     private SorteerMinigame SorteerMinigame;
+    private Camera Cam;
     private void Awake()
     {
         if (instanse == null)
@@ -38,6 +39,7 @@ public class WinSystem : MonoBehaviour
     private void Start()
     {
         SorteerMinigame = FindObjectOfType<SorteerMinigame>();
+        Cam = FindObjectOfType<Camera>();
         //test = FindObjectOfType<Test>();
         for (int i = 0; i < Players.Count; i++)
         {
@@ -63,6 +65,7 @@ public class WinSystem : MonoBehaviour
         }
         test.player[playerTurn].enabled = true;
     }
+    /*
     public void getWeapon(GameObject weapon)
     {
         if (!Players[playerTurn].weapons.Contains(weapon))
@@ -72,14 +75,14 @@ public class WinSystem : MonoBehaviour
             Debug.Log(Players[playerTurn].weapons[0]+"Bark");
         }
         Debug.Log(Players[playerTurn].weapons[0]);
-
     }
-    void GiniGames()
+    */
+    void MiniGames()
     {
         if (SorteerMinigame.active)
         {
-            SorteerMinigame.Cam.transform.position = new Vector3(0, 55, -10); 
-            SorteerMinigame.Cam.transform.rotation = Quaternion.Euler(45, 0, 0);
+            Cam.transform.position = new Vector3(0, 55, -10); 
+            Cam.transform.rotation = Quaternion.Euler(45, 0, 0);
         }
         else
         {
@@ -88,7 +91,7 @@ public class WinSystem : MonoBehaviour
     }
     private void Update()
     {
-        GiniGames();
+        MiniGames();
 
 
         //Debug.Log(Players[0].weapons[0]);

@@ -8,15 +8,14 @@ public class SorteerMinigame : MonoBehaviour
     [SerializeField] private List<GameObject> setTrash;
     public List<GameObject> weapons;
     public List<GameObject> trash;
-    public Camera Cam; 
     public bool active = true;
     private bool spawn = false;
-    private float radius = 0.5f;
+    private float radius = 0.3f;
     public int points = 0; 
     public int deathPoints = 0;
     void Start()
     {
-        Cam = FindObjectOfType<Camera>();
+        
     }
 
     void Update()
@@ -47,16 +46,10 @@ public class SorteerMinigame : MonoBehaviour
                         y += 1;
                     }
                 }
-                //for (int i = 0; i < setWeapons.Count; i++)
-                //{
-                //    GameObject temp;
-                //    temp = Instantiate(setWeapons[i], new Vector3(Random.Range(-2.0f, 2.0f), 46,Random.Range(-2.0f,2.0f)) , Quaternion.identity);
-                //    temp = Instantiate(setTrash[i], new Vector3(Random.Range(-2.0f, 2.0f), 46, Random.Range(-2.0f, 2.0f)), Quaternion.identity);
-                //}
                 spawn = true;
             }
 
-            if(points>=5)
+            if(points>= setWeapons.Count+ setTrash.Count)
             {
                 Debug.Log("you win");
             }

@@ -22,11 +22,11 @@ public class MuratTest : MonoBehaviour
         }
     }
     private void OnCollisionEnter(Collision collision)
-    {
+    {/*
         if (collision.gameObject.tag == "Weapon")
         {
             winscript.getWeapon(collision.gameObject);
         }
-        
+        */
     }
 }
