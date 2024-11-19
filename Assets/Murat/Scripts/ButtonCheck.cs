@@ -31,6 +31,7 @@ public class ButtonCheck : MonoBehaviour
     }
     public void Check()
     {
+        /*
         if (RoomCheck())
         {
             //corret roomK
@@ -57,7 +58,7 @@ public class ButtonCheck : MonoBehaviour
         {
             //incorret person
         }
-
+        */
         if (RoomCheck() && WaponCheck() && KillerCheck())
         {
             Debug.Log("you win");
@@ -68,7 +69,7 @@ public class ButtonCheck : MonoBehaviour
         }
     }
 
-    bool KillerCheck()
+    private bool KillerCheck()
     {
         if (winSystem.People[killerDropdown.value] == winSystem.People[winSystem.killerK])
         {
@@ -80,7 +81,7 @@ public class ButtonCheck : MonoBehaviour
         }
     }
 
-    bool RoomCheck()
+    private bool RoomCheck()
     {
         if (winSystem.Rooms[roomDropdown.value] == winSystem.Rooms[winSystem.roomK])
         {
@@ -92,7 +93,7 @@ public class ButtonCheck : MonoBehaviour
         }
     }
 
-    bool WaponCheck()
+    private bool WaponCheck()
     {
         if (winSystem.Weapons[weaponDropdown.value] == winSystem.Weapons[winSystem.weaponK])
         {
