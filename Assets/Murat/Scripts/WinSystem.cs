@@ -16,12 +16,13 @@ public class WinSystem : MonoBehaviour
     public int roomK;
     public int weaponK;
 
-    private static WinSystem instanse;
-
-    public int playerTurn;
+    public int playerTurn = 0;
     public int turns;
+    public bool doneTurn = false;
 
-    Test test;
+    private static WinSystem instanse;
+    private Test test;
+    private SorteerMinigame SorteerMinigame;
     private void Awake()
     {
         if (instanse == null)
@@ -34,18 +35,24 @@ public class WinSystem : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
     }
-    void Start()
+    private void Start()
     {
+        SorteerMinigame = FindObjectOfType<SorteerMinigame>();
+        //test = FindObjectOfType<Test>();
         for (int i = 0; i < Players.Count; i++)
         {
             test.player[i].enabled = false;
         }
-        
+        //test.player[playerTurn].enabled = true;
         rand();
-        test = FindObjectOfType<Test>();
     }
-
-    void next()
+    private void rand()
+    {
+        killerK = Random.Range(0, People.Count);
+        roomK = Random.Range(0, Rooms.Count);
+        weaponK = Random.Range(0, Weapons.Count);
+    }
+    private void next()
     {
         Players[playerTurn].pos = test.player[playerTurn].transform.position;
         test.player[playerTurn].enabled = false;
@@ -56,38 +63,39 @@ public class WinSystem : MonoBehaviour
         }
         test.player[playerTurn].enabled = true;
     }
-    void getWeapon()
+    public void getWeapon(GameObject weapon)
     {
-        for (int i = 0;i < Players[playerTurn].weapons.Count; i++)
+        if (!Players[playerTurn].weapons.Contains(weapon))
         {
-            if (Players[playerTurn].weapons.Contains(gameObject) == false)
-            {
-                Players[playerTurn].weapons.Add(gameObject);
-            }
+            Players[playerTurn].weapons.Add(weapon);
+            weapon.SetActive(false);
+            Debug.Log(Players[playerTurn].weapons[0]+"Bark");
         }
-    }
+        Debug.Log(Players[playerTurn].weapons[0]);
 
-    void Update()
+    }
+    void GiniGames()
     {
-        test.player[playerTurn].enabled = true;
-        for (int i = playerTurn; i> playerTurn; i++)
+        if (SorteerMinigame.active)
         {
-            if (playerTurn == i)
-            {
-                getWeapon();
-            }
+            SorteerMinigame.Cam.transform.position = new Vector3(0, 50, -10);
         }
-        
-        for (int i = 0; i < Players.Count; i++)
+        else
         {
-            
+            //cam normal
         }
     }
-    void rand()
+    private void Update()
     {
-        killerK = Random.Range(0, People.Count);
-        roomK = Random.Range(0, Rooms.Count);
-        weaponK = Random.Range(0, Weapons.Count);
+        GiniGames();
+
+
+        //Debug.Log(Players[0].weapons[0]);
+
+        //if (test.player[playerTurn].Stepsleft<=0&& doneTurn)
+        //{
+        //    next();
+        //}
     }
 }
 
