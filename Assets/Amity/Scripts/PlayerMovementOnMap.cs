@@ -13,13 +13,17 @@ public class PlayerMovementOnMap : MonoBehaviour
 
     public int Stepsleft = 0;
     private bool canMove = true;
+    private bool canRoll;
     private Test test;
-    private WinSystem winscript;
+    private WinSystem gameManager;
+    [SerializeField] private BoxCollider PlayerBlocker;
+    
 
     public TextMeshProUGUI textMeshProUGUI;
 
     private void Start()
     {
+        PlayerBlocker.enabled = true;
         textMeshProUGUI = FindObjectOfType<TextMeshProUGUI>();
         test = FindObjectOfType<Test>();
         this.transform.position = new Vector3(5, 3, -35);
@@ -30,9 +34,10 @@ public class PlayerMovementOnMap : MonoBehaviour
     private void Update()
     {
         textMeshProUGUI.text = "steps:" + Stepsleft.ToString();
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V) && canRoll)
         {
             DiceRoll();
+            canRoll = false;
         }
         this.transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 8);
         if (Vector3.Distance(transform.position, targetPos) < 0.25f)
@@ -44,6 +49,11 @@ public class PlayerMovementOnMap : MonoBehaviour
         {
             canMove = false;
         }
+    }
+
+    public void MyTurn()
+    {
+        canRoll = true;
     }
 
     public void DiceRoll()

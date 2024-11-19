@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FingerPrintSlip : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class FingerPrintSlip : MonoBehaviour
     [SerializeField] private Transform GuessingArea;
     [SerializeField] private int ThisSlip;
     [SerializeField] private tempbuttonscript confirmButton;
+    [SerializeField] private List<Material> imageList;
+
+    private void Start()
+    {
+        gameObject.GetComponent<Renderer>().material = imageList[ThisSlip-1];
+    }
 
     private void OnMouseDown()
     {

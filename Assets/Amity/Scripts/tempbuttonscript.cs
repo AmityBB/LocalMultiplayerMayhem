@@ -5,12 +5,14 @@ using UnityEngine;
 public class tempbuttonscript : MonoBehaviour
 {
     public int Picked;
-    [SerializeField] private int CorrectSlip;
-   /* private WinSystem gameManager;*/
+    public int CorrectSlip;
+    [SerializeField] private WinSystem gameManager;
+    [SerializeField] private int strikes = 3;
 
     private void Start()
     {
-        /*CorrectSlip = gameManager.killer;*/
+        gameManager = FindObjectOfType<WinSystem>();
+        CorrectSlip = /*gameManager.killerK;*/ Random.Range(1, 5);
     }
 
     public void Confirm()
@@ -26,6 +28,11 @@ public class tempbuttonscript : MonoBehaviour
         else
         {
             Debug.Log("Lose minigame");
+            strikes--;
+            if(strikes == 0)
+            {
+                /*player with turn loses*/
+            }
         }
     }
 }

@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 403592583295723645}
   - component: {fileID: 371890761394320449}
   - component: {fileID: -8742636599320207244}
+  - component: {fileID: 4598580528117946846}
+  - component: {fileID: 1370118364198799138}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -30,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949969915242313103}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00006042833, y: -0.0035413653, z: 0.0019742874, w: 0.99999183}
+  m_LocalRotation: {x: -0.00005941825, y: -0.0035429057, z: 0.001972048, w: 0.9999918}
   m_LocalPosition: {x: 5, y: 3, z: -35}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
@@ -149,6 +151,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4598580528117946846}
+        m_TargetAssemblyTypeName: PlayerMovementInMini, Assembly-CSharp
+        m_MethodName: Movement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9b74686a-f8de-49f3-b6bc-8cccb5a28804
     m_ActionName: Game/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0
@@ -169,6 +183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stepsleft: 0
+  PlayerBlocker: {fileID: 1370118364198799138}
+  textMeshProUGUI: {fileID: 0}
 --- !u!54 &-8742636599320207244
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -178,7 +194,7 @@ Rigidbody:
   m_GameObject: {fileID: 1949969915242313103}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 10
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -194,5 +210,40 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &4598580528117946846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949969915242313103}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e13824b7e970cea46b71486d42565b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 100
+  PlayerBlocker: {fileID: 1370118364198799138}
+--- !u!65 &1370118364198799138
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949969915242313103}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 3.017354, y: 0.85974586, z: 3.10286}
+  m_Center: {x: 0.023727098, y: 0.10135464, z: -0.027569216}

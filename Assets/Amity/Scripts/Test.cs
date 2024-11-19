@@ -6,10 +6,11 @@ public class Test : MonoBehaviour
 {
     public List<PlayerMovementOnMap> player;
     [SerializeField]
-    private GameObject MagGlass;
     private Camera Cam;
     private bool Active;
     private GameObject clone;
+    [SerializeField]
+    private GameObject[] Minigames;
     public GameObject confirmButton;
 
     void Start()
@@ -27,7 +28,7 @@ public class Test : MonoBehaviour
         {
             UVMinigame();
         }
-        if( Input.GetKeyDown(KeyCode.Alpha3))
+        if(Input.GetKeyDown(KeyCode.Alpha3))
         {
             SortingMinigame();
         }
@@ -38,22 +39,38 @@ public class Test : MonoBehaviour
         if (!Active)
         {
             Cam.transform.rotation = new Quaternion(0, 0, 0, 0);
-            clone = Instantiate(MagGlass, Cam.transform.position + (Cam.transform.forward * 5), Quaternion.Euler(-90, 0, 0));
-            confirmButton.SetActive(true);
+            clone = Instantiate(Minigames[0], Cam.transform.position + (Cam.transform.forward * 16), Quaternion.identity);
             Active = true;
         }
         else
         {
             Cam.transform.rotation = Quaternion.Euler(60, 0, 0);
             Destroy(clone);
-            confirmButton.SetActive(false);
             Active = false;
         }
     }
 
     private void UVMinigame()
     {
-
+        if (!Active)
+        {
+            for (int i = 0; i < player.Count; i++)
+            {
+                player[i].GetComponent<PlayerMovementOnMap>().enabled = false;
+                player[i].GetComponent<PlayerMovementInMini>().enabled = true;
+            }
+            Active = true;
+        }
+        else
+        {
+            for (int i = 0; i < player.Count; i++)
+            {
+                player[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
+                player[i].GetComponent<PlayerMovementOnMap>().enabled = true;
+                player[i].GetComponent<PlayerMovementInMini>().enabled = false;
+            }
+            Active = false;
+        }
     }
 
     private void SortingMinigame()
