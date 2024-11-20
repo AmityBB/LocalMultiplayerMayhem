@@ -2435,8 +2435,8 @@ GameObject:
   - component: {fileID: 708408832}
   - component: {fileID: 708408831}
   m_Layer: 0
-  m_Name: Plane
-  m_TagString: Untagged
+  m_Name: table
+  m_TagString: Table
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4071,6 +4071,7 @@ MonoBehaviour:
   - {fileID: 8912873232872623750, guid: 4411589ed8121bd459657e3cb76fa86f, type: 3}
   weapons: []
   trash: []
+  table: {fileID: 708408830}
   active: 0
   points: 0
   deathPoints: 0

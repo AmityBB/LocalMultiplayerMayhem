@@ -13,6 +13,7 @@ public class WeaponTrash : MonoBehaviour
     [SerializeField] private bool correct = false;
     [SerializeField] private bool pickUp = false;
     private SorteerMinigame SorteerMinigame;
+    [SerializeField] private GameObject table;
     private void OnMouseDown()
     {
         if (!done)
@@ -35,22 +36,23 @@ public class WeaponTrash : MonoBehaviour
     void Start()
     {
         SorteerMinigame = FindObjectOfType<SorteerMinigame>();
+        table = GameObject.FindGameObjectWithTag("Table");
     }
     void Update()
     {
         if (!done)
         {
-            if (transform.position.y <= 46|| transform.position.y >= 46)
+            if (transform.position.y <= table.transform.position.y + 1 || transform.position.y >= table.transform.position.y + 1)
             {
-                transform.position = new Vector3(transform.position.x, 46, transform.position.z);
+                transform.position = new Vector3(transform.position.x, table.transform.position.y + 1, transform.position.z);
             }
-            if (transform.position.z >= 3)
+            if (transform.position.z >= 3 + table.transform.position.z)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, 3);
+                transform.position = new Vector3(transform.position.x, transform.position.y, 3 + table.transform.position.z);
             }
-            else if(transform.position.z <= -3)
+            else if(transform.position.z <= -3 + table.transform.position.z)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, -3);
+                transform.position = new Vector3(transform.position.x, transform.position.y, -3 + table.transform.position.z);
             }
         }
 
@@ -63,22 +65,22 @@ public class WeaponTrash : MonoBehaviour
         {
             if (isTrash)
             {
-                if (gameObject.transform.position.x > 3.5f)
+                if (gameObject.transform.position.x > 3.5f + table.transform.position.x)
                 {
                     getpoints();
                 }
-                else if (gameObject.transform.position.x < -3.5f)
+                else if (gameObject.transform.position.x < -3.5f + table.transform.position.x)
                 {
                     getdeathPoints();
                 }
             }
             if (!isTrash)
             {
-                if (gameObject.transform.position.x < -3.5f)
+                if (gameObject.transform.position.x < -3.5f + table.transform.position.x)
                 {
                     getpoints();
                 }
-                else if (gameObject.transform.position.x > 3.5f)
+                else if (gameObject.transform.position.x > 3.5f + table.transform.position.x)
                 {
                     getdeathPoints();
                 }
@@ -94,13 +96,13 @@ public class WeaponTrash : MonoBehaviour
                 if (correct&& !done2)
                 {
                     SorteerMinigame.trash.Add(gameObject);
-                    transform.position = new Vector3(6, 46, 7.5f + SorteerMinigame.trash.Count*-2.5f);
+                    transform.position = new Vector3(6 + table.transform.position.x, table.transform.position.y + 1, 7.5f + SorteerMinigame.trash.Count*-2.5f + table.transform.position.z);
                     done2 = true;
                 }
                 else if(!correct)
                 {
                     done = false;
-                    transform.position = new Vector3(Random.Range(-1,2),46, Random.Range(-1, 2));
+                    transform.position = new Vector3(Random.Range(-1,2) + table.transform.position.x, table.transform.position.y + 1, Random.Range(-1, 2) + table.transform.position.z);
                     pickUp = false;
                 }
             }
@@ -110,13 +112,13 @@ public class WeaponTrash : MonoBehaviour
                 if (correct&& !done2)
                 {
                     SorteerMinigame.weapons.Add(gameObject);
-                    transform.position = new Vector3(-6, 46, 7.5f + SorteerMinigame.weapons.Count * -2.5f);
+                    transform.position = new Vector3(-6+ table.transform.position.x, table.transform.position.y + 1, 7.5f + SorteerMinigame.weapons.Count * -2.5f + table.transform.position.z);
                     done2 = true;
                 }
                 else if(!correct)
                 {
                     done = false;
-                    transform.position = new Vector3(Random.Range(-1, 2), 46, Random.Range(-1, 2));
+                    transform.position = new Vector3(Random.Range(-1, 2) + table.transform.position.x, table.transform.position.y + 1, Random.Range(-1, 2) + table.transform.position.z);
                     pickUp = false;
                 }
             }
