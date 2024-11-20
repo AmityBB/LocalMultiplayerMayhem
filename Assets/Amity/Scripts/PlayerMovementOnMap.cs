@@ -24,7 +24,6 @@ public class PlayerMovementOnMap : MonoBehaviour
     private void Start()
     {
         PlayerBlocker.enabled = true;
-        textMeshProUGUI = FindObjectOfType<TextMeshProUGUI>();
         test = FindObjectOfType<Test>();
         this.transform.position = new Vector3(5, 3, -35);
         targetPos = transform.position;
@@ -33,7 +32,7 @@ public class PlayerMovementOnMap : MonoBehaviour
 
     private void Update()
     {
-        textMeshProUGUI.text = "steps:" + Stepsleft.ToString();
+        textMeshProUGUI.text = "Steps:" + Stepsleft.ToString();
         if (Input.GetKeyDown(KeyCode.V) && canRoll)
         {
             DiceRoll();
@@ -63,7 +62,7 @@ public class PlayerMovementOnMap : MonoBehaviour
 
     public void Movement(CallbackContext _context)
     {
-        if (_context.performed && Stepsleft > 0 && canMove)
+        if (_context.performed && Stepsleft > 0 && canMove && gameObject.GetComponent<PlayerMovementOnMap>().enabled)
         {
             if (_context.control.ToString() == "Key:/Keyboard/a" || _context.control.ToString() == "Key:/Keyboard/d")
             {
@@ -122,6 +121,6 @@ public class PlayerMovementOnMap : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-       /* winscript.getWeapon(collision.gameobject);*/
+       /* gameManager.getWeapon(collision.gameobject);*/
     }
 }
