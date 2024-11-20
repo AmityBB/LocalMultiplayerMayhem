@@ -81,7 +81,7 @@ public class WinSystem : MonoBehaviour
     {
         if (SorteerMinigame.active)
         {
-            Cam.transform.position = new Vector3(0, 55, -10); 
+            Cam.transform.position = new Vector3(SorteerMinigame.table.transform.position.x, SorteerMinigame.table.transform.position.y+10, -10+ SorteerMinigame.table.transform.position.z); 
             Cam.transform.rotation = Quaternion.Euler(45, 0, 0);
         }
         else
@@ -92,8 +92,6 @@ public class WinSystem : MonoBehaviour
     private void Update()
     {
         MiniGames();
-
-
         //Debug.Log(Players[0].weapons[0]);
 
         //if (test.player[playerTurn].Stepsleft<=0&& doneTurn)

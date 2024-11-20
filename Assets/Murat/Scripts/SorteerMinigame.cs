@@ -8,8 +8,10 @@ public class SorteerMinigame : MonoBehaviour
     [SerializeField] private List<GameObject> setTrash;
     public List<GameObject> weapons;
     public List<GameObject> trash;
-    public bool active = true;
+    public GameObject table;
+    public bool active = false;
     private bool spawn = false;
+    private bool done = false;
     private float radius = 0.3f;
     public int points = 0; 
     public int deathPoints = 0;
@@ -27,7 +29,7 @@ public class SorteerMinigame : MonoBehaviour
                 int x = 0;
                 while (x < setTrash.Count)
                 {
-                    var position = new Vector3(Random.Range(-3.0f, 3.0f), 46, Random.Range(-3.0f, 3.0f));
+                    var position = new Vector3(Random.Range(-3.0f, 3.0f) + table.transform.position.x, table.transform.position.y + 1, Random.Range(-3.0f, 3.0f) + table.transform.position.z);
                     Collider[] collider = Physics.OverlapSphere(position, radius);
                     if (collider.Length == 0)
                     {
@@ -38,7 +40,7 @@ public class SorteerMinigame : MonoBehaviour
                 int y = 0;
                 while (y < setWeapons.Count)
                 {
-                    var position = new Vector3(Random.Range(-3.0f, 3.0f), 46, Random.Range(-3.0f, 3.0f));
+                    var position = new Vector3(Random.Range(-3.0f, 3.0f) + table.transform.position.x, table.transform.position.y + 1, Random.Range(-3.0f, 3.0f) + table.transform.position.z);
                     Collider[] collider = Physics.OverlapSphere(position, radius);
                     if (collider.Length == 0)
                     {
@@ -49,13 +51,15 @@ public class SorteerMinigame : MonoBehaviour
                 spawn = true;
             }
 
-            if(points>= setWeapons.Count+ setTrash.Count)
+            if(points>= setWeapons.Count+ setTrash.Count && !done)
             {
                 Debug.Log("you win");
+                done = true;
             }
-            if(deathPoints>=3)
+            if(deathPoints>=3 && !done)
             {
                 Debug.Log("you lose");
+                done = true;
             }
         }
     }
