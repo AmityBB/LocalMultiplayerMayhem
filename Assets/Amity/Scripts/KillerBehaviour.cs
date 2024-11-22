@@ -24,6 +24,7 @@ public class KillerBehaviour : MonoBehaviour
 
     private void Update()
     {
+        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         FindNearestPlayer();
 
         if(Vector3.Distance(NearestPlayer.transform.position, transform.position) < range && !TouchingPlayer)
