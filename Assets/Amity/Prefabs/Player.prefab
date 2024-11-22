@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 6487573298288557088}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,7 +239,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 36
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &4598580528117946846
 MonoBehaviour:
@@ -270,12 +270,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 3.017354, y: 0.85974586, z: 3.10286}
-  m_Center: {x: 0.023727098, y: 0.10135464, z: -0.027569216}
+  m_Size: {x: 2.8, y: 2.55, z: 2.84}
+  m_Center: {x: 0.030373415, y: 0.46, z: -0.038333576}
 --- !u!65 &6487573298288557088
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -295,8 +295,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0691803, y: 2.5584497, z: 0.6747136}
-  m_Center: {x: 0.013010106, y: 0.28249228, z: 0.010847848}
+  m_Size: {x: 0.65202636, y: 2.5584497, z: 0.4240889}
+  m_Center: {x: -0.00076921785, y: 0.28249234, z: 0.020528834}
 --- !u!1 &4369209763329501377
 GameObject:
   m_ObjectHideFlags: 0

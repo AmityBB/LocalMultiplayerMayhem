@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Test : MonoBehaviour
 {
+    public List<Transform> KillerSpawns;
     public List<PlayerMovementOnMap> player;
     [SerializeField]
     private Camera Cam;
@@ -11,6 +13,8 @@ public class Test : MonoBehaviour
     private GameObject clone;
     [SerializeField]
     private GameObject[] Minigames;
+    [SerializeField]
+    private GameObject Killer;
     public GameObject confirmButton;
 
     void Start()
@@ -24,10 +28,12 @@ public class Test : MonoBehaviour
         {
             PrintMinigame();
         }
+
         if(Input.GetKeyDown(KeyCode.Alpha2))
         {
             UVMinigame();
         }
+
         if(Input.GetKeyDown(KeyCode.Alpha3))
         {
             SortingMinigame();
@@ -59,6 +65,7 @@ public class Test : MonoBehaviour
                 player[i].GetComponent<PlayerMovementOnMap>().enabled = false;
                 player[i].GetComponent<PlayerMovementInMini>().enabled = true;
             }
+            clone = Instantiate(Killer, KillerSpawns[Random.Range(0, 8)].position, Quaternion.identity);
             Active = true;
         }
         else
@@ -68,6 +75,7 @@ public class Test : MonoBehaviour
                 player[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
                 player[i].GetComponent<PlayerMovementOnMap>().enabled = true;
                 player[i].GetComponent<PlayerMovementInMini>().enabled = false;
+                Destroy(clone);
             }
             Active = false;
         }

@@ -9,7 +9,7 @@ public class FingerPrintSlip : MonoBehaviour
     private bool Checking;
     [SerializeField] private Transform GuessingArea;
     [SerializeField] private int ThisSlip;
-    [SerializeField] private tempbuttonscript confirmButton;
+    [SerializeField] private Tempbuttonscript confirmButton;
     [SerializeField] private List<Material> imageList;
 
     private void Start()

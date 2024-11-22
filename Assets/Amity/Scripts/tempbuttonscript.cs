@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tempbuttonscript : MonoBehaviour
+public class Tempbuttonscript : MonoBehaviour
 {
     public int Picked;
     public int CorrectSlip;
-    [SerializeField] private WinSystem gameManager;
+    /*[SerializeField] private WinSystem gameManager;*/
     [SerializeField] private int strikes = 3;
 
     private void Start()
     {
-        gameManager = FindObjectOfType<WinSystem>();
+        /*gameManager = FindObjectOfType<WinSystem>();*/
         CorrectSlip = /*gameManager.killerK;*/ Random.Range(1, 5);
     }
 
