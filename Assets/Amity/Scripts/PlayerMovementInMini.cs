@@ -15,16 +15,6 @@ public class PlayerMovementInMini : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
-        {
-                LastMoveDir = MoveDir;  
-        }
-
-        if (!Input.GetKeyUp(KeyCode.W) && !Input.GetKeyUp(KeyCode.A) && !Input.GetKeyUp(KeyCode.S) && !Input.GetKeyUp(KeyCode.D))
-        {
-            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        }
-
         MoveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
         if (MoveDir == Vector3.zero)
@@ -37,5 +27,13 @@ public class PlayerMovementInMini : MonoBehaviour
         }
 
         gameObject.GetComponent<Rigidbody>().AddForce(MoveDir * speed);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Killer"))
+        {
+
+        }
     }
 }

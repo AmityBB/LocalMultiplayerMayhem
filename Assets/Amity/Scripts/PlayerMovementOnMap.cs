@@ -13,8 +13,12 @@ public class PlayerMovementOnMap : MonoBehaviour
 
     public int Stepsleft = 0;
     private bool canMove = true;
-    private bool canRoll = true;
-    private Test test;
+    private bool canRoll = false;
+    private Test gameManager;
+    public bool nearPrint;
+    public bool nearSort;
+    public bool nearUV;
+    private bool thisTurn;
     /*private WinSystem gameManager;*/
     [SerializeField] private BoxCollider PlayerBlocker;
     
@@ -24,21 +28,41 @@ public class PlayerMovementOnMap : MonoBehaviour
     private void Start()
     {
         PlayerBlocker.enabled = true;
-        test = FindObjectOfType<Test>();
+        gameManager = FindObjectOfType<Test>();
         this.transform.position = new Vector3(5, 3.2f, -35);
         targetPos = transform.position;
-        test.player.Add(this);
+        gameManager.player.Add(this);
     }
 
     private void Update()
     {
+        if(Stepsleft == 0 && !nearPrint && !nearSort && !nearUV && thisTurn)
+        {
+            thisTurn = false;
+            gameManager.TurnEnd();
+        }
+        if (Input.GetKeyDown(KeyCode.E) && canMove)
+        {
+            if (nearPrint)
+            {
+                gameManager.PrintMinigame();
+            }
+            if (nearSort)
+            {
+                gameManager.SortingMinigame();
+            }
+            if (nearUV)
+            {
+                gameManager.UVMinigame();
+            }
+            if(gameManager.Active && Stepsleft == 0)
+            {
+                gameManager.TurnEnd();
+            }
+        }
+
         textMeshProUGUI.text = "Steps:" + Stepsleft.ToString();
 
-        if (Input.GetKeyDown(KeyCode.V) && canRoll)
-        {
-            DiceRoll();
-            canRoll = false;
-        }
 
         this.transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 8);
 
@@ -56,16 +80,28 @@ public class PlayerMovementOnMap : MonoBehaviour
     public void MyTurn()
     {
         canRoll = true;
+        thisTurn = true;
     }
 
     public void DiceRoll()
     {
-        Stepsleft += Random.Range(1, 7) + Random.Range(1, 7);
+
     }
+
+
+    public void RollDice(CallbackContext _context)
+    {
+        if (canRoll)
+        {
+            Stepsleft += Random.Range(1, 7) + Random.Range(1, 7);
+            canRoll = false;
+        }
+    }
+
 
     public void Movement(CallbackContext _context)
     {
-        if (_context.performed && Stepsleft > 0 && canMove && gameObject.GetComponent<PlayerMovementOnMap>().enabled)
+        if (_context.performed && Stepsleft > 0 && canMove && gameObject.GetComponent<PlayerMovementOnMap>().enabled && gameManager.Active == false)
         {
 
             if (_context.control.ToString() == "Key:/Keyboard/a" || _context.control.ToString() == "Key:/Keyboard/d")
@@ -88,7 +124,7 @@ public class PlayerMovementOnMap : MonoBehaviour
 
             if (!Physics.Raycast(transform.position, MoveDir, /*out RaycastHit Hit,*/ 6))
             {
-                transform.rotation = Quaternion.LookRotation(MoveDir);
+                /*transform.rotation = Quaternion.LookRotation(MoveDir);*/
 
                 if (MoveDir.x > 0) 
                 { 
@@ -113,6 +149,7 @@ public class PlayerMovementOnMap : MonoBehaviour
                 targetPos = this.transform.localPosition + MoveDir;
                 Stepsleft--;
             }
+            transform.rotation = Quaternion.LookRotation(MoveDir);
         }
 
         if (_context.canceled)

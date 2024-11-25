@@ -34,7 +34,7 @@ public class KillerBehaviour : MonoBehaviour
         }
         else 
         {
-            m_agent.speed = 10;
+            m_agent.speed = 8;
             Roaming = true; 
         }
     }
@@ -56,7 +56,7 @@ public class KillerBehaviour : MonoBehaviour
 
     public void ChasePlayer()
     {
-        m_agent.speed = 18;
+        m_agent.speed = 14;
         m_agent.SetDestination(NearestPlayer.transform.position);
     }
 

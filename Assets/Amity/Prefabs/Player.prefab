@@ -180,9 +180,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4598580528117946846}
-        m_TargetAssemblyTypeName: PlayerMovementInMini, Assembly-CSharp
-        m_MethodName: Movement
+    m_ActionId: 9b74686a-f8de-49f3-b6bc-8cccb5a28804
+    m_ActionName: Game/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 371890761394320449}
+        m_TargetAssemblyTypeName: PlayerMovementOnMap, Assembly-CSharp
+        m_MethodName: RollDice
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -192,8 +196,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 9b74686a-f8de-49f3-b6bc-8cccb5a28804
-    m_ActionName: Game/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+    m_ActionId: 2532565c-f21a-4865-b4c5-278c09a226f7
+    m_ActionName: Game/RollDice[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Game
@@ -212,6 +216,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stepsleft: 0
+  nearPrint: 0
+  nearSort: 0
+  nearUV: 0
   PlayerBlocker: {fileID: 1370118364198799138}
   textMeshProUGUI: {fileID: 862642060804249706}
 --- !u!54 &-8742636599320207244
@@ -253,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e13824b7e970cea46b71486d42565b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 300
+  speed: 35
   PlayerBlocker: {fileID: 1370118364198799138}
 --- !u!65 &1370118364198799138
 BoxCollider:

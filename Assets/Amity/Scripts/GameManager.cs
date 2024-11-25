@@ -9,13 +9,17 @@ public class Test : MonoBehaviour
     public List<PlayerMovementOnMap> player;
     [SerializeField]
     private Camera Cam;
-    private bool Active;
+    public bool Active;
     private GameObject clone;
     [SerializeField]
     private GameObject[] Minigames;
     [SerializeField]
     private GameObject Killer;
     public GameObject confirmButton;
+    private int playerWithTurn;
+    [SerializeField]
+    private List<GameObject> trashItems;
+    
 
     void Start()
     {
@@ -24,23 +28,19 @@ public class Test : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if(Input.GetKeyDown(KeyCode.G))
         {
-            PrintMinigame();
-        }
-
-        if(Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            UVMinigame();
-        }
-
-        if(Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SortingMinigame();
+            StartRound();
         }
     }
 
-    private void PrintMinigame()
+    void StartRound()
+    {
+        playerWithTurn = 0;
+        player[0].MyTurn();
+    }
+
+    public void PrintMinigame()
     {
         if (!Active)
         {
@@ -56,7 +56,7 @@ public class Test : MonoBehaviour
         }
     }
 
-    private void UVMinigame()
+    public void UVMinigame()
     {
         if (!Active)
         {
@@ -65,7 +65,8 @@ public class Test : MonoBehaviour
                 player[i].GetComponent<PlayerMovementOnMap>().enabled = false;
                 player[i].GetComponent<PlayerMovementInMini>().enabled = true;
             }
-            clone = Instantiate(Killer, KillerSpawns[Random.Range(0, 8)].position, Quaternion.identity);
+            clone = Instantiate(Killer, KillerSpawns[Random.Range(0, 7)].position, Quaternion.identity);
+            StartCoroutine(UVGameTimer());
             Active = true;
         }
         else
@@ -81,8 +82,33 @@ public class Test : MonoBehaviour
         }
     }
 
-    private void SortingMinigame()
+    IEnumerator UVGameTimer()
     {
+        yield return new WaitForSecondsRealtime(60);
+        UVMinigame();
+    }
 
+    public void SortingMinigame()
+    {
+        if (!Active)
+        {
+            clone = Instantiate(Minigames[1], Cam.transform.position + (Cam.transform.forward * 16), Quaternion.identity);
+            clone.GetComponent<SorteerMinigame>().active = true;
+            Active = true;
+        }
+        else
+        {
+            Destroy(clone);
+            Active = false;
+        }
+    }
+
+    public void TurnEnd()
+    {
+        if(playerWithTurn < player.Count-1) 
+        {
+            playerWithTurn++;
+        }
+        player[playerWithTurn].MyTurn();
     }
 }
