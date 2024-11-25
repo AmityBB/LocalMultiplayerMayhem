@@ -890,8 +890,10 @@ MonoBehaviour:
   Active: 0
   Minigames:
   - {fileID: 8881306497219053150, guid: 1a91bab4b7d0dd34aaef9b88a4547c80, type: 3}
+  - {fileID: 8033950743099257651, guid: 7bc1d32700761794f9f177b1ad894460, type: 3}
   Killer: {fileID: 1499298932950254595, guid: 80b9e11d3ba92f941ba8cbbc911a3cf4, type: 3}
   confirmButton: {fileID: 0}
+  trashItems: []
 --- !u!4 &294805051
 Transform:
   m_ObjectHideFlags: 0

@@ -98,7 +98,12 @@ public class Test : MonoBehaviour
         }
         else
         {
-            Destroy(clone);
+            for (int i = 0; i < 9; i++)
+            {
+                Destroy(FindObjectOfType<WeaponTrash>().gameObject);
+                if(i==8) { Destroy(clone); }
+            }
+            
             Active = false;
         }
     }
