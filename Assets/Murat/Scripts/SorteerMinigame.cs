@@ -12,19 +12,19 @@ public class SorteerMinigame : MonoBehaviour
     public bool active = false;
     private bool spawn = false;
     private bool done = false;
-    private float radius = 0.3f;
+    private float radius = 0.1f;
     public int points = 0; 
     public int deathPoints = 0;
     void Update()
     {
-        if (active)
+        if (active)//wanneer je de game speelt
         {
-            if (!spawn)
+            if (!spawn)//gaat maar een keer
             {
                 int x = 0;
                 while (x < setTrash.Count)
                 {
-                    var position = new Vector3(Random.Range(-3.0f, 3.0f) + table.transform.position.x, table.transform.position.y + 1, Random.Range(-3.0f, 3.0f) + table.transform.position.z);
+                    var position = new Vector3(Random.Range(-2.0f, 3.0f) + table.transform.position.x, table.transform.position.y + 1, Random.Range(-3.0f, 3.0f) + table.transform.position.z);
                     Collider[] collider = Physics.OverlapSphere(position, radius);
                     if (collider.Length == 0)
                     {
@@ -35,7 +35,7 @@ public class SorteerMinigame : MonoBehaviour
                 int y = 0;
                 while (y < setWeapons.Count)
                 {
-                    var position = new Vector3(Random.Range(-3.0f, 3.0f) + table.transform.position.x, table.transform.position.y + 1, Random.Range(-3.0f, 3.0f) + table.transform.position.z);
+                    var position = new Vector3(Random.Range(-2.0f, 3.0f) + table.transform.position.x, table.transform.position.y + 1, Random.Range(-3.0f, 3.0f) + table.transform.position.z);
                     Collider[] collider = Physics.OverlapSphere(position, radius);
                     if (collider.Length == 0)
                     {

@@ -14,6 +14,8 @@ public class WeaponTrash : MonoBehaviour
     [SerializeField] private bool pickUp = false;
     private SorteerMinigame SorteerMinigame;
     [SerializeField] private GameObject table;
+
+    float extraHeight = 1;
     private void OnMouseDown()
     {
         if (!done)
@@ -40,47 +42,52 @@ public class WeaponTrash : MonoBehaviour
     }
     void Update()
     {
+        screanwrap();//om te verkomen dat het van de tafel af komt
+        NotDone();//wanneer je niet op de juiste plek heb gezet
+        Done();//wanneer je wel op de juiste plek heb gezet
+    }
+    void screanwrap()
+    {
+        float extraDist = 3.5f;
         if (!done)
         {
-            if (transform.position.y <= table.transform.position.y + 1 || transform.position.y >= table.transform.position.y + 1)
+            if (transform.position.y <= table.transform.position.y + extraHeight || transform.position.y >= table.transform.position.y + extraHeight)
             {
-                transform.position = new Vector3(transform.position.x, table.transform.position.y + 1, transform.position.z);
+                transform.position = new Vector3(transform.position.x, table.transform.position.y + extraHeight, transform.position.z);
             }
-            if (transform.position.z >= 3 + table.transform.position.z)
+            if (transform.position.z >= extraDist + table.transform.position.z)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, 3 + table.transform.position.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y, extraDist + table.transform.position.z);
             }
-            else if(transform.position.z <= -3 + table.transform.position.z)
+            else if (transform.position.z <= -extraDist + table.transform.position.z)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, -3 + table.transform.position.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y, -extraDist + table.transform.position.z);
             }
         }
-
-        NotDone();
-        Done();
     }
     void NotDone()
     {
+        float checkSides = 3.5f;
         if (!done)
         {
             if (isTrash)
             {
-                if (gameObject.transform.position.x > 3.5f + table.transform.position.x)
+                if (gameObject.transform.position.x > checkSides + table.transform.position.x)
                 {
                     getpoints();
                 }
-                else if (gameObject.transform.position.x < -3.5f + table.transform.position.x)
+                else if (gameObject.transform.position.x < -checkSides + table.transform.position.x)
                 {
                     getdeathPoints();
                 }
             }
             if (!isTrash)
             {
-                if (gameObject.transform.position.x < -3.5f + table.transform.position.x)
+                if (gameObject.transform.position.x < -checkSides + table.transform.position.x)
                 {
                     getpoints();
                 }
-                else if (gameObject.transform.position.x > 3.5f + table.transform.position.x)
+                else if (gameObject.transform.position.x > checkSides + table.transform.position.x)
                 {
                     getdeathPoints();
                 }
@@ -89,6 +96,9 @@ public class WeaponTrash : MonoBehaviour
     }
     void Done()
     {
+        float doneSide = 4;
+        float correctDist = 4.5f;
+        float correctExtraDist = 1.5f;
         if (done)
         {
             if (isTrash)
@@ -96,13 +106,13 @@ public class WeaponTrash : MonoBehaviour
                 if (correct&& !done2)
                 {
                     SorteerMinigame.trash.Add(gameObject);
-                    transform.position = new Vector3(6 + table.transform.position.x, table.transform.position.y + 1, 7.5f + SorteerMinigame.trash.Count*-2.5f + table.transform.position.z);
+                    transform.position = new Vector3(doneSide + table.transform.position.x, table.transform.position.y + extraHeight, correctDist + SorteerMinigame.trash.Count*-correctExtraDist + table.transform.position.z);
                     done2 = true;
                 }
                 else if(!correct)
                 {
                     done = false;
-                    transform.position = new Vector3(Random.Range(-1,2) + table.transform.position.x, table.transform.position.y + 1, Random.Range(-1, 2) + table.transform.position.z);
+                    transform.position = new Vector3(Random.Range(-1,2) + table.transform.position.x, table.transform.position.y + extraHeight, Random.Range(-1, 2) + table.transform.position.z);
                     pickUp = false;
                 }
             }
@@ -112,25 +122,25 @@ public class WeaponTrash : MonoBehaviour
                 if (correct&& !done2)
                 {
                     SorteerMinigame.weapons.Add(gameObject);
-                    transform.position = new Vector3(-6+ table.transform.position.x, table.transform.position.y + 1, 7.5f + SorteerMinigame.weapons.Count * -2.5f + table.transform.position.z);
+                    transform.position = new Vector3(-doneSide + table.transform.position.x, table.transform.position.y + extraHeight, correctDist + SorteerMinigame.weapons.Count * -correctExtraDist + table.transform.position.z);
                     done2 = true;
                 }
                 else if(!correct)
                 {
                     done = false;
-                    transform.position = new Vector3(Random.Range(-1, 2) + table.transform.position.x, table.transform.position.y + 1, Random.Range(-1, 2) + table.transform.position.z);
+                    transform.position = new Vector3(Random.Range(-1, 2) + table.transform.position.x, table.transform.position.y + extraHeight, Random.Range(-1, 2) + table.transform.position.z);
                     pickUp = false;
                 }
             }
         }
     }
-    void getpoints()
+    void getpoints()//je krijgt winpunten
     {
         SorteerMinigame.points++;
         done = true;
         correct = true;
     }
-    void getdeathPoints()
+    void getdeathPoints()//je krijgt verliespunten
     {
         SorteerMinigame.deathPoints++;
         done = true;

@@ -48,7 +48,7 @@ public class WinSystem : MonoBehaviour
         //test.player[playerTurn].enabled = true;
         rand();
     }
-    private void rand()
+    private void rand()//chose who, where and what is the culprit
     {
         killerK = Random.Range(0, People.Count);
         roomK = Random.Range(0, Rooms.Count);

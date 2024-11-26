@@ -12,25 +12,23 @@ public class UVLight : MonoBehaviour
         if (active)
         {
             light.enabled =true;
-            for (int i = 0; i < reveal.Count; i++)
+            for (int i = 0; i < reveal.Count; i++)//zorgt foor de UV 
             {
                 reveal[i].SetVector("_LightPosition", light.transform.position);
                 reveal[i].SetVector("_LightDirection", -light.transform.forward);
                 reveal[i].SetFloat("_LightAngle", light.spotAngle);
                 reveal[i].SetFloat("_LightStrength", light.range);
             }
-
         }
         else
         {
-            for (int i = 0; i < reveal.Count; i++)
+            for (int i = 0; i < reveal.Count; i++)//zorgt dat het uit is
             {
                 reveal[i].SetVector("_LightPosition", new Vector4(110, 110, 110, 0));
                 reveal[i].SetVector("_LightDirection", new Vector4(110, 110, 110, 0));
                 reveal[i].SetFloat("_LightAngle", 0);
                 reveal[i].SetFloat("_LightStrength", 0);
             }
-
             light.enabled = false;
         }
 
