@@ -27,6 +27,7 @@ public class WallScript : MonoBehaviour
         {
             currentColor.a += 0.01f;
         }
+
         if( currentColor.a > targetColor.a)
         {
             currentColor.a -= 0.01f;
