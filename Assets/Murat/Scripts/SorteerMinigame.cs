@@ -15,11 +15,6 @@ public class SorteerMinigame : MonoBehaviour
     private float radius = 0.3f;
     public int points = 0; 
     public int deathPoints = 0;
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         if (active)
