@@ -16,10 +16,11 @@ public class Test : MonoBehaviour
     [SerializeField]
     private GameObject Killer;
     public GameObject confirmButton;
+    [SerializeField]
     private int playerWithTurn;
     [SerializeField]
-    private List<GameObject> trashItems;
-    
+    private WeaponTrash[] weaponTrash;
+
 
     void Start()
     {
@@ -38,6 +39,15 @@ public class Test : MonoBehaviour
     {
         playerWithTurn = 0;
         player[0].MyTurn();
+    }
+
+    public void TurnEnd()
+    {
+        if (playerWithTurn < player.Count - 1)
+        {
+            playerWithTurn++;
+        }
+        player[playerWithTurn].MyTurn();
     }
 
     public void PrintMinigame()
@@ -90,30 +100,27 @@ public class Test : MonoBehaviour
 
     public void SortingMinigame()
     {
+        
+        
         if (!Active)
         {
-            clone = Instantiate(Minigames[1], Cam.transform.position + (Cam.transform.forward * 16), Quaternion.identity);
+            clone = Instantiate(Minigames[1], (Cam.transform.position + new Vector3(0,0,3)) + (Cam.transform.forward * 16), Quaternion.identity);
             clone.GetComponent<SorteerMinigame>().active = true;
             Active = true;
+            
         }
         else
         {
-            for (int i = 0; i < 9; i++)
+            Destroy(clone);
+            Cam.transform.rotation = Quaternion.Euler(60,0,0);
+            weaponTrash = FindObjectsOfType(typeof(WeaponTrash)) as WeaponTrash[];
+            for (int i = 0; i < weaponTrash.Length; i++)
             {
-                Destroy(FindObjectOfType<WeaponTrash>().gameObject);
-                if(i==8) { Destroy(clone); }
+                Destroy(weaponTrash[i].gameObject);
             }
-            
             Active = false;
         }
     }
 
-    public void TurnEnd()
-    {
-        if(playerWithTurn < player.Count-1) 
-        {
-            playerWithTurn++;
-        }
-        player[playerWithTurn].MyTurn();
-    }
+    
 }

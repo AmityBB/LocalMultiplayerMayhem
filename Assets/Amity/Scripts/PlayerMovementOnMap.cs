@@ -32,11 +32,12 @@ public class PlayerMovementOnMap : MonoBehaviour
         this.transform.position = new Vector3(5, 3.2f, -35);
         targetPos = transform.position;
         gameManager.player.Add(this);
+        textMeshProUGUI = FindFirstObjectByType<TextMeshProUGUI>();
     }
 
     private void Update()
     {
-        if(Stepsleft == 0 && !nearPrint && !nearSort && !nearUV && thisTurn)
+        if(Stepsleft == 0 && !nearPrint && !nearSort && !nearUV && thisTurn && !canRoll)
         {
             thisTurn = false;
             gameManager.TurnEnd();
@@ -60,8 +61,10 @@ public class PlayerMovementOnMap : MonoBehaviour
                 gameManager.TurnEnd();
             }
         }
-
-        textMeshProUGUI.text = "Steps:" + Stepsleft.ToString();
+        if (thisTurn)
+        {
+            textMeshProUGUI.text = "Steps:" + Stepsleft.ToString();
+        }
 
 
         this.transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 8);
