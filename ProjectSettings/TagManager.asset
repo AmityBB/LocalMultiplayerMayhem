@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Weapon
   - Table
+  - Killer
   - Light
   layers:
   - Default
@@ -14,9 +15,9 @@ TagManager:
   - Player
   - Water
   - UI
+  - 
+  - 
   - FingerPrint
-  - 
-  - 
   - 
   - 
   - 
