@@ -212,12 +212,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010886b8e30c49244b43094c24cf894c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reveal: {fileID: 2100000, guid: c11047f977465fc429b0f0360cbb33f0, type: 2}
+  reveal1: {fileID: 2100000, guid: c11047f977465fc429b0f0360cbb33f0, type: 2}
+  reveal2: {fileID: 2100000, guid: 3a4635bd93882884ba5981b57b42359b, type: 2}
   light: {fileID: 7741154359326966051}
-  number: 0
-  shaders:
-  - {fileID: 4800000, guid: 9f5f9abeb3d7a3b45b3c4c122de8f61d, type: 3}
-  - {fileID: 4800000, guid: 022c97fd4c285634abae001c01451ddf, type: 3}
+  active: 0
 --- !u!1 &5438774047331816503
 GameObject:
   m_ObjectHideFlags: 0
