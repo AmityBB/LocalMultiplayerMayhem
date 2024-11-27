@@ -9,7 +9,7 @@ public class CameraScript : MonoBehaviour
     [SerializeField] private GameObject m_Printgame;
     SorteerMinigame sorteer;
     bool kamer;
-    [SerializeField] bool print;
+    [SerializeField] private bool print;
     public bool playerTime;
     private int playerWithTurn;
     Test gameMaster;
