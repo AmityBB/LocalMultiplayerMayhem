@@ -95,6 +95,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2532565c-f21a-4865-b4c5-278c09a226f7
     m_ActionName: Game/RollDice[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 371890761394320449}
+        m_TargetAssemblyTypeName: PlayerMovementOnMap, Assembly-CSharp
+        m_MethodName: Drag
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 78ba5b9c-469e-4aaa-a40a-3cb7c3bc6fb1
+    m_ActionName: Game/Select[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Game
@@ -117,6 +133,7 @@ MonoBehaviour:
   nearSort: 0
   nearUV: 0
   PlayerBlocker: {fileID: 1370118364198799138}
+  magGlass: {fileID: 0}
   textMeshProUGUI: {fileID: 0}
 --- !u!54 &-8742636599320207244
 Rigidbody:

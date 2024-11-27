@@ -17,7 +17,7 @@ public class Test : MonoBehaviour
     private GameObject Killer;
     public GameObject confirmButton;
     [SerializeField]
-    private int playerWithTurn;
+    public int playerWithTurn;
     [SerializeField]
     private WeaponTrash[] weaponTrash;
 
@@ -47,6 +47,10 @@ public class Test : MonoBehaviour
         {
             playerWithTurn++;
         }
+        else
+        {
+            playerWithTurn = 0;
+        }
         player[playerWithTurn].MyTurn();
     }
 
@@ -56,6 +60,7 @@ public class Test : MonoBehaviour
         {
             Cam.transform.rotation = new Quaternion(0, 0, 0, 0);
             clone = Instantiate(Minigames[0], Cam.transform.position + (Cam.transform.forward * 16), Quaternion.identity);
+            player[playerWithTurn].GetComponent<PlayerMovementOnMap>().Draggable = FindObjectsOfType<MouseDraggingScript>();
             Active = true;
         }
         else

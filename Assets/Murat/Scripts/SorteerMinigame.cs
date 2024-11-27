@@ -10,7 +10,7 @@ public class SorteerMinigame : MonoBehaviour
     public List<GameObject> trash;
     public GameObject table;
     public bool active = false;
-    private bool spawn = false;
+    public bool spawn = false;
     private bool done = false;
     private float radius = 0.3f;
     public int points = 0; 

@@ -21,7 +21,8 @@ public class PlayerMovementOnMap : MonoBehaviour
     private bool thisTurn;
     /*private WinSystem gameManager;*/
     [SerializeField] private BoxCollider PlayerBlocker;
-    
+    public MouseDraggingScript[] Draggable;
+
 
     public TextMeshProUGUI textMeshProUGUI;
 
@@ -37,7 +38,7 @@ public class PlayerMovementOnMap : MonoBehaviour
 
     private void Update()
     {
-        if(Stepsleft == 0 && !nearPrint && !nearSort && !nearUV && thisTurn && !canRoll)
+        if (Stepsleft == 0 && !nearPrint && !nearSort && !nearUV && thisTurn && !canRoll)
         {
             thisTurn = false;
             gameManager.TurnEnd();
@@ -56,7 +57,7 @@ public class PlayerMovementOnMap : MonoBehaviour
             {
                 gameManager.UVMinigame();
             }
-            if(gameManager.Active && Stepsleft == 0)
+            if (gameManager.Active && Stepsleft == 0)
             {
                 gameManager.TurnEnd();
             }
@@ -79,6 +80,7 @@ public class PlayerMovementOnMap : MonoBehaviour
             canMove = false;
         }
     }
+
 
     public void MyTurn()
     {
@@ -129,22 +131,22 @@ public class PlayerMovementOnMap : MonoBehaviour
             {
                 /*transform.rotation = Quaternion.LookRotation(MoveDir);*/
 
-                if (MoveDir.x > 0) 
-                { 
+                if (MoveDir.x > 0)
+                {
                     MoveDir.x = 10;
                 }
 
-                if (MoveDir.x < 0) 
+                if (MoveDir.x < 0)
                 {
                     MoveDir.x = -10;
                 }
 
-                if (MoveDir.z > 0) 
+                if (MoveDir.z > 0)
                 {
                     MoveDir.z = 10;
                 }
 
-                if (MoveDir.z < 0) 
+                if (MoveDir.z < 0)
                 {
                     MoveDir.z = -10;
                 }
@@ -168,9 +170,12 @@ public class PlayerMovementOnMap : MonoBehaviour
             }
         }
     }
-/*
-    private void OnCollisionEnter(Collision collision)
+
+    /*public void Drag(CallbackContext _context)
     {
-       *//* gameManager.getWeapon(collision.gameobject);*//*
+        if (_context.performed)
+        {
+            closest.Offset();
+        }
     }*/
 }
