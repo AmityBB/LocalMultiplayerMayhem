@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Weapon
   - Table
+  - Killer
+  - Light
   layers:
   - Default
   - TransparentFX
@@ -13,9 +15,9 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
-  - 
-  - 
+  - NPC
+  - Obstacles
+  - FingerPrint
   - 
   - 
   - 

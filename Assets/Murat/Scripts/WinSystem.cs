@@ -91,7 +91,7 @@ public class WinSystem : MonoBehaviour
     }
     private void Update()
     {
-        MiniGames();
+        //MiniGames();
         //Debug.Log(Players[0].weapons[0]);
 
         //if (test.player[playerTurn].Stepsleft<=0&& doneTurn)

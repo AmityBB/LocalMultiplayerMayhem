@@ -13,28 +13,63 @@ public class PlayerMovementOnMap : MonoBehaviour
 
     public int Stepsleft = 0;
     private bool canMove = true;
-    private Test test;
-    private WinSystem winscript;
+    private bool canRoll = false;
+    private Test gameManager;
+    public bool nearPrint;
+    public bool nearSort;
+    public bool nearUV;
+    private bool thisTurn;
+    /*private WinSystem gameManager;*/
+    [SerializeField] private BoxCollider PlayerBlocker;
+    public MouseDraggingScript[] Draggable;
+
 
     public TextMeshProUGUI textMeshProUGUI;
 
     private void Start()
     {
-        textMeshProUGUI = FindObjectOfType<TextMeshProUGUI>();
-        test = FindObjectOfType<Test>();
-        this.transform.position = new Vector3(5, 3, -35);
+        PlayerBlocker.enabled = true;
+        gameManager = FindObjectOfType<Test>();
+        this.transform.position = new Vector3(5, 3.2f, -35);
         targetPos = transform.position;
-        test.player.Add(this);
+        gameManager.player.Add(this);
+        textMeshProUGUI = FindFirstObjectByType<TextMeshProUGUI>();
     }
 
     private void Update()
     {
-        textMeshProUGUI.text = "steps:" + Stepsleft.ToString();
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Stepsleft == 0 && !nearPrint && !nearSort && !nearUV && thisTurn && !canRoll)
         {
-            DiceRoll();
+            thisTurn = false;
+            gameManager.TurnEnd();
         }
+        if (Input.GetKeyDown(KeyCode.E) && canMove)
+        {
+            if (nearPrint)
+            {
+                gameManager.PrintMinigame();
+            }
+            if (nearSort)
+            {
+                gameManager.SortingMinigame();
+            }
+            if (nearUV)
+            {
+                gameManager.UVMinigame();
+            }
+            if (gameManager.Active && Stepsleft == 0)
+            {
+                gameManager.TurnEnd();
+            }
+        }
+        if (thisTurn)
+        {
+            textMeshProUGUI.text = "Steps:" + Stepsleft.ToString();
+        }
+
+
         this.transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 8);
+
         if (Vector3.Distance(transform.position, targetPos) < 0.25f)
         {
             this.transform.position = targetPos;
@@ -46,15 +81,34 @@ public class PlayerMovementOnMap : MonoBehaviour
         }
     }
 
+
+    public void MyTurn()
+    {
+        canRoll = true;
+        thisTurn = true;
+    }
+
     public void DiceRoll()
     {
-        Stepsleft += Random.Range(1, 7);
+
     }
+
+
+    public void RollDice(CallbackContext _context)
+    {
+        if (canRoll)
+        {
+            Stepsleft += Random.Range(1, 7) + Random.Range(1, 7);
+            canRoll = false;
+        }
+    }
+
 
     public void Movement(CallbackContext _context)
     {
-        if (_context.performed && Stepsleft > 0 && canMove)
+        if (_context.performed && Stepsleft > 0 && canMove && gameObject.GetComponent<PlayerMovementOnMap>().enabled && gameManager.Active == false)
         {
+
             if (_context.control.ToString() == "Key:/Keyboard/a" || _context.control.ToString() == "Key:/Keyboard/d")
             {
                 MoveDir.x = _context.ReadValue<Vector2>().x * 10;
@@ -63,6 +117,7 @@ public class PlayerMovementOnMap : MonoBehaviour
             {
                 MoveDir.x = 0;
             }
+
             if (_context.control.ToString() == "Key:/Keyboard/w" || _context.control.ToString() == "Key:/Keyboard/s")
             {
                 MoveDir.z = _context.ReadValue<Vector2>().y * 10;
@@ -72,16 +127,34 @@ public class PlayerMovementOnMap : MonoBehaviour
                 MoveDir.z = 0;
             }
 
-            RaycastHit Hit;
-            if (!Physics.Raycast(transform.position, MoveDir, out Hit, 6))
+            if (!Physics.Raycast(transform.position, MoveDir, /*out RaycastHit Hit,*/ 6))
             {
-                if (MoveDir.x > 0) { MoveDir.x = 10; }
-                if (MoveDir.x < 0) { MoveDir.x = -10; }
-                if (MoveDir.z > 0) { MoveDir.z = 10; }
-                if (MoveDir.z < 0) { MoveDir.z = -10; }
+                /*transform.rotation = Quaternion.LookRotation(MoveDir);*/
+
+                if (MoveDir.x > 0)
+                {
+                    MoveDir.x = 10;
+                }
+
+                if (MoveDir.x < 0)
+                {
+                    MoveDir.x = -10;
+                }
+
+                if (MoveDir.z > 0)
+                {
+                    MoveDir.z = 10;
+                }
+
+                if (MoveDir.z < 0)
+                {
+                    MoveDir.z = -10;
+                }
+
                 targetPos = this.transform.localPosition + MoveDir;
                 Stepsleft--;
             }
+            transform.rotation = Quaternion.LookRotation(MoveDir);
         }
 
         if (_context.canceled)
@@ -90,6 +163,7 @@ public class PlayerMovementOnMap : MonoBehaviour
             {
                 MoveDir.x = 0;
             }
+
             if (_context.control.ToString() == "Key:/Keyboard/w" || _context.control.ToString() == "Key:/Keyboard/s")
             {
                 MoveDir.z = 0;
@@ -97,8 +171,11 @@ public class PlayerMovementOnMap : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    /*public void Drag(CallbackContext _context)
     {
-       /* winscript.getWeapon(collision.gameobject);*/
-    }
+        if (_context.performed)
+        {
+            closest.Offset();
+        }
+    }*/
 }
