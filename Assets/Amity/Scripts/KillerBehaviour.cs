@@ -9,6 +9,7 @@ public class KillerBehaviour : MonoBehaviour
     private GameObject NearestPlayer;
     private NavMeshAgent m_agent;
     public float range;
+    [SerializeField]
     private bool Roaming;
     private bool TouchingPlayer;
     private Vector3 Destination;
@@ -63,18 +64,19 @@ public class KillerBehaviour : MonoBehaviour
     IEnumerator Roam()
     {
         yield return new WaitForSeconds(4);
-
-        if (Roaming) 
+        if (Roaming)
         {
-            Destination = new Vector3(Random.Range(transform.position.x - maxDistance, transform.position.x + maxDistance), transform.position.y - m_agent.baseOffset, Random.Range(transform.position.z - maxDistance, transform.position.z + maxDistance));
+            Destination = new Vector3(Random.Range(gameManager.transform.position.x - maxDistance, gameManager.transform.position.x + maxDistance), transform.position.y - m_agent.baseOffset, Random.Range(transform.position.z - maxDistance, transform.position.z + maxDistance));
             NavMeshPath Path = new();
-
+            Debug.Log(Path.status);
             if (m_agent.CalculatePath(Destination, Path) && Path.status == NavMeshPathStatus.PathInvalid)
             {
                 Debug.Log("path invalid");
             }
-            else 
+            else
             {
+                Debug.Log("a");
+                
                 m_agent.SetPath(Path);
             }
         }

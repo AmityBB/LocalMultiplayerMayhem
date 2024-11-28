@@ -13,7 +13,7 @@ public class PlayerMovementInMini : MonoBehaviour
     {
         PlayerBlocker.enabled = false;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         MoveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
@@ -23,6 +23,7 @@ public class PlayerMovementInMini : MonoBehaviour
         }
         else
         {
+            LastMoveDir = MoveDir;
             transform.rotation = Quaternion.LookRotation(MoveDir);
         }
 

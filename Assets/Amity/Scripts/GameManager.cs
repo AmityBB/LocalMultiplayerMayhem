@@ -16,10 +16,11 @@ public class Test : MonoBehaviour
     [SerializeField]
     private GameObject Killer;
     public GameObject confirmButton;
-    private int playerWithTurn;
     [SerializeField]
-    private List<GameObject> trashItems;
-    
+    public int playerWithTurn;
+    [SerializeField]
+    private WeaponTrash[] weaponTrash;
+
 
     void Start()
     {
@@ -40,12 +41,26 @@ public class Test : MonoBehaviour
         player[0].MyTurn();
     }
 
+    public void TurnEnd()
+    {
+        if (playerWithTurn < player.Count - 1)
+        {
+            playerWithTurn++;
+        }
+        else
+        {
+            playerWithTurn = 0;
+        }
+        player[playerWithTurn].MyTurn();
+    }
+
     public void PrintMinigame()
     {
         if (!Active)
         {
             Cam.transform.rotation = new Quaternion(0, 0, 0, 0);
             clone = Instantiate(Minigames[0], Cam.transform.position + (Cam.transform.forward * 16), Quaternion.identity);
+            player[playerWithTurn].GetComponent<PlayerMovementOnMap>().Draggable = FindObjectsOfType<MouseDraggingScript>();
             Active = true;
         }
         else
@@ -90,30 +105,27 @@ public class Test : MonoBehaviour
 
     public void SortingMinigame()
     {
+        
+        
         if (!Active)
         {
-            clone = Instantiate(Minigames[1], Cam.transform.position + (Cam.transform.forward * 16), Quaternion.identity);
+            clone = Instantiate(Minigames[1], (Cam.transform.position + new Vector3(0,0,3)) + (Cam.transform.forward * 16), Quaternion.identity);
             clone.GetComponent<SorteerMinigame>().active = true;
             Active = true;
+            
         }
         else
         {
-            for (int i = 0; i < 9; i++)
+            Destroy(clone);
+            Cam.transform.rotation = Quaternion.Euler(60,0,0);
+            weaponTrash = FindObjectsOfType(typeof(WeaponTrash)) as WeaponTrash[];
+            for (int i = 0; i < weaponTrash.Length; i++)
             {
-                Destroy(FindObjectOfType<WeaponTrash>().gameObject);
-                if(i==8) { Destroy(clone); }
+                Destroy(weaponTrash[i].gameObject);
             }
-            
             Active = false;
         }
     }
 
-    public void TurnEnd()
-    {
-        if(playerWithTurn < player.Count-1) 
-        {
-            playerWithTurn++;
-        }
-        player[playerWithTurn].MyTurn();
-    }
+    
 }

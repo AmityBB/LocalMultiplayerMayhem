@@ -167,5 +167,6 @@ MonoBehaviour:
   trash: []
   table: {fileID: 482084421666398711}
   active: 0
+  spawn: 0
   points: 0
   deathPoints: 0
