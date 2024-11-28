@@ -14,12 +14,12 @@ public class MuratTest : MonoBehaviour
     }
     void Update()
     {
-        if (test.player[winscript.playerTurn].Stepsleft<=0)
+        /*if (test.player[winscript.playerTurn].Stepsleft<=0)
         {
             test.player[winscript.playerTurn] = FindObjectOfType<PlayerMovementOnMap>();
             test.player[winscript.playerTurn].DiceRoll();
             winscript.doneTurn = true;
-        }
+        }*/
     }
     private void OnCollisionEnter(Collision collision)
     {/*

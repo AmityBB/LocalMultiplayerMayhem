@@ -43,7 +43,7 @@ public class WinSystem : MonoBehaviour
         //test = FindObjectOfType<Test>();
         for (int i = 0; i < Players.Count; i++)
         {
-            test.player[i].enabled = false;
+            test.player[i].GetComponent<PlayerMovementOnMap>().enabled = false;
         }
         //test.player[playerTurn].enabled = true;
         rand();
@@ -57,13 +57,13 @@ public class WinSystem : MonoBehaviour
     private void next()
     {
         Players[playerTurn].pos = test.player[playerTurn].transform.position;
-        test.player[playerTurn].enabled = false;
+        test.player[playerTurn].GetComponent<PlayerMovementOnMap>().enabled = false;
         playerTurn++;
         if (playerTurn > Players.Count)
         {
             playerTurn = 0;
         }
-        test.player[playerTurn].enabled = true;
+        test.player[playerTurn].GetComponent<PlayerMovementOnMap>().enabled = true;
     }
     /*
     public void getWeapon(GameObject weapon)
