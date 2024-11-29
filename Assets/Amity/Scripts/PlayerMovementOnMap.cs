@@ -124,7 +124,8 @@ public class PlayerMovementOnMap : Player
     {
         if (_context.performed && Stepsleft > 0 && canMove && gameObject.GetComponent<PlayerMovementOnMap>().enabled && gameManager.UVActive == false)
         {
-            if (_context.control.ToString() == "Key:/Keyboard/a" || _context.control.ToString() == "Key:/Keyboard/d")
+            Debug.Log(_context);
+            if (_context.ReadValue<Vector2>().x != 0)
             {
                 MoveDir.x = _context.ReadValue<Vector2>().x * 10;
             }
@@ -133,7 +134,7 @@ public class PlayerMovementOnMap : Player
                 MoveDir.x = 0;
             }
 
-            if (_context.control.ToString() == "Key:/Keyboard/w" || _context.control.ToString() == "Key:/Keyboard/s")
+            if (_context.ReadValue<Vector2>().y != 0)
             {
                 MoveDir.z = _context.ReadValue<Vector2>().y * 10;
             }

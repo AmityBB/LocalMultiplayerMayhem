@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEngine.InputSystem.InputAction;
 
 public class Player : MonoBehaviour
 {
@@ -12,11 +14,5 @@ public class Player : MonoBehaviour
     {
         gameManager = FindObjectOfType<Test>();
         gameObject.GetComponent<PlayerMovementOnMap>().enabled = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

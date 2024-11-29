@@ -29,24 +29,49 @@ public class Test : MonoBehaviour
     private Canvas stepsLeftCan;
     public Canvas TitleScreen;
     public Light mainLight;
+    private Vector2 MouseDir;
+    private bool MouseMove;
 
+    [SerializeField] private InputAction inputDir;
 
+    private void Awake()
+    {
+        inputDir.Enable();
+        inputDir.performed += context => { MouseDir = context.ReadValue<Vector2>() * 7; MouseMove = true; Debug.Log(context.ReadValue<Vector2>()); };
+        inputDir.canceled += context => { MouseDir = Vector2.zero; };
+    }
     void Start()
     {
         Cam = FindObjectOfType<Camera>();
         inputManager = FindObjectOfType<PlayerInputManager>().gameObject;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            inputDir.Disable();
+            MouseDir = Vector2.zero;
+        }
         if(Input.GetKeyDown(KeyCode.G))
         {
             StartRound();
         }
+        /*IncreaseVector();*/
     }
 
+    public void IncreaseVector()
+    {
+        Vector2 moveVector = MouseDir;
+        Vector2 currentPosition = Mouse.current.position.ReadValue();
+        Vector2 newPosition = currentPosition + moveVector;
+        Mouse.current.WarpCursorPosition(newPosition);
+    }
+    
     public void StartRound()
     {
+        /*Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;*/
         stepsLeftCan.GetComponent<Canvas>().enabled = true;
         playerWithTurn = 0;
         for (int i = 0; i < player.Count; i++)
@@ -75,6 +100,8 @@ public class Test : MonoBehaviour
     {
         if (!PrintActive)
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             stepsLeftCan.GetComponent<Canvas>().enabled = false;
             Cam.transform.rotation = new Quaternion(0, 0, 0, 0);
             clone = Instantiate(Minigames[0], Cam.transform.position + (Cam.transform.forward * 16), Quaternion.identity);
@@ -83,6 +110,8 @@ public class Test : MonoBehaviour
         }
         else
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             stepsLeftCan.GetComponent<Canvas>().enabled = true;
             Cam.transform.rotation = Quaternion.Euler(60, 0, 0);
             Destroy(clone);
@@ -139,6 +168,8 @@ public class Test : MonoBehaviour
     {
         if (!SortingActive)
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             stepsLeftCan.GetComponent<Canvas>().enabled = false;
             clone = Instantiate(Minigames[1], (Cam.transform.position + new Vector3(0,0,3)) + (Cam.transform.forward * 16), Quaternion.identity);
             clone.GetComponent<SorteerMinigame>().active = true;
@@ -148,6 +179,8 @@ public class Test : MonoBehaviour
         }
         else
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             stepsLeftCan.GetComponent<Canvas>().enabled = true;
             Destroy(clone);
             Cam.transform.rotation = Quaternion.Euler(60,0,0);
@@ -176,6 +209,8 @@ public class Test : MonoBehaviour
                 stepsLeftCan.GetComponent<Canvas>().enabled = false;
             }
             inputManager.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             TitleScreen.GetComponent<Canvas>().enabled = true;
         }
     }

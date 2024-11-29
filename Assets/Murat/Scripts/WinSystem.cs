@@ -47,14 +47,6 @@ public class WinSystem : MonoBehaviour
     }
     private void Start()
     {
-        SorteerMinigame = FindObjectOfType<SorteerMinigame>();
-        Cam = FindObjectOfType<Camera>();
-        //test = FindObjectOfType<Test>();
-        for (int i = 0; i < Players.Count; i++)
-        {
-            test.player[i].GetComponent<PlayerMovementOnMap>().enabled = false;
-        }
-        //test.player[playerTurn].enabled = true;
         rand();
     }
     private void rand()//chose who, where and what is the culprit
@@ -65,33 +57,6 @@ public class WinSystem : MonoBehaviour
     }
     private void Update()
     {
-        Players[playerTurn].pos = test.player[playerTurn].transform.position;
-        test.player[playerTurn].GetComponent<PlayerMovementOnMap>().enabled = false;
-        playerTurn++;
-        if (playerTurn > Players.Count)
-        {
-            playerTurn = 0;
-        }
-        test.player[playerTurn].GetComponent<PlayerMovementOnMap>().enabled = true;
-    }
-    /*
-    public void getWeapon(GameObject weapon)
-    {
-        if (!Players[playerTurn].weapons.Contains(weapon))
-        {
-            Players[playerTurn].weapons.Add(weapon);
-            weapon.SetActive(false);
-            Debug.Log(Players[playerTurn].weapons[0]+"Bark");
-        }
-        Debug.Log(Players[playerTurn].weapons[0]);
-    }
-    */
-    void MiniGames()
-    {
-        if (SorteerMinigame.active)
-        {
-            Cam.transform.position = new Vector3(SorteerMinigame.table.transform.position.x, SorteerMinigame.table.transform.position.y+10, -10+ SorteerMinigame.table.transform.position.z); 
-            Cam.transform.rotation = Quaternion.Euler(45, 0, 0);
         if (choosTime > 1.3f)
         {
             canChoos = true;
@@ -102,7 +67,7 @@ public class WinSystem : MonoBehaviour
             choosTime += Time.deltaTime;
         }
         people.text = "Person:" + killerChose;
-        rooms.text = "room:"+ roomChose;
+        rooms.text = "room:" + roomChose;
         weapons.text = "weapon:" + weaponChose;
         imageKiller.sprite = imagePeopleList[killerChose];
         imageRoom.sprite = imageRoomList[roomChose];

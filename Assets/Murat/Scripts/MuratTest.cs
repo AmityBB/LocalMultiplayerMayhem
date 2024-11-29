@@ -10,7 +10,7 @@ public class MuratTest : MonoBehaviour
     {
         test = FindObjectOfType<Test>();
         winscript = FindObjectOfType<WinSystem>();
-        winscript.Players.Add(new PlayerInfo { pos = new Vector3(0, 0, 0), weapons= new List<GameObject>()});
+        /*winscript.Players.Add(new PlayerInfo { pos = new Vector3(0, 0, 0), weapons= new List<GameObject>()});*/
     }
     void Update()
     {
