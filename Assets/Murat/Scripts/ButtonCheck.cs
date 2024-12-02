@@ -12,18 +12,14 @@ public class ButtonCheck : MonoBehaviour
 
 
 
-    WinSystem winSystem;
-    CameraScript cameraScript;
-    Winbutton winButton;
+    private WinSystem winSystem;
+    private CameraScript cameraScript;
+    private Winbutton winButton;
     private void Start()
     {
         winSystem = FindObjectOfType<WinSystem>();
         cameraScript = FindObjectOfType<CameraScript>();
         winButton = FindObjectOfType<Winbutton>();
-    }
-    private void Update()
-    {
-
     }
     public void KillerPick()
     {
@@ -63,7 +59,5 @@ public class ButtonCheck : MonoBehaviour
             winSystem.choosTime = 0;
         }
     }
-
-
 }
 
