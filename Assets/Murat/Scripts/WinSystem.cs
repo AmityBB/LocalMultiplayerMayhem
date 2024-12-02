@@ -77,7 +77,7 @@ public class WinSystem : MonoBehaviour
             choosTime += Time.deltaTime;
         }
         people.text = "Person:" + killerChose;
-        rooms.text = "room:"+ roomChose;
+        rooms.text = "room:" + roomChose;
         weapons.text = "weapon:" + weaponChose;
         imageKiller.sprite = spritePeopleList[killerChose];
         imageRoom.sprite = spriteRoomList[roomChose];

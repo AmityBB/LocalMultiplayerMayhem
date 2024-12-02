@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class FingerPrintSlip : MonoBehaviour
 {
-    private bool released;
-    private bool Checking;
+    [SerializeField] private bool released;
+    [SerializeField] private bool Checking;
     [SerializeField] private Transform GuessingArea;
     [SerializeField] private int ThisSlip;
     [SerializeField] private Tempbuttonscript confirmButton;

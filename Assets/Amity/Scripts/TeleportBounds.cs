@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TeleportBounds : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Killer"))
         {
