@@ -9,12 +9,20 @@ public class SorteerMinigame : MonoBehaviour
     public List<GameObject> weapons;
     public List<GameObject> trash;
     public GameObject table;
+
     public bool active = false;
     public bool spawn = false;
     private bool done = false;
+
     private float radius = 0.1f;
     public int points = 0; 
     public int deathPoints = 0;
+
+    WinSystem system;
+    private void Start()
+    {
+        system = FindObjectOfType<WinSystem>();
+    }
     void Update()
     {
         if (active)//wanneer je de game speelt
@@ -49,6 +57,7 @@ public class SorteerMinigame : MonoBehaviour
             if(points>= setWeapons.Count+ setTrash.Count && !done)
             {
                 Debug.Log("you win");
+                Debug.Log(system.Weapons[system.weaponK]);
                 done = true;
             }
             if(deathPoints>=3 && !done)

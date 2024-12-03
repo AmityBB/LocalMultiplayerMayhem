@@ -18,10 +18,6 @@ public class WinSystem : MonoBehaviour
     public int roomChose;
     public int weaponChose;
 
-    [SerializeField] private TextMeshProUGUI people;
-    [SerializeField] private TextMeshProUGUI rooms;
-    [SerializeField] private TextMeshProUGUI weapons;
-
     [SerializeField] private Image imageKiller;
     [SerializeField] private Image imageRoom;
     [SerializeField] private Image imageWeapon;
@@ -33,6 +29,10 @@ public class WinSystem : MonoBehaviour
     [SerializeField] private List<Sprite> spritePeopleList;
     [SerializeField] private List<Sprite> spriteRoomList;
     [SerializeField] private List<Sprite> spriteWeaponList;
+
+    public GameObject fingerPrintPanel;
+    public GameObject bloodPanel;
+    public List<GameObject> roomBloodPrintPanels;
 
     public float choosTime = 0;
     public bool canChoos = false;
@@ -51,7 +51,7 @@ public class WinSystem : MonoBehaviour
     }
     private void Start()
     {
-        rand();
+        Rand();
         for (int i = 0; i < spritePeopleList.Count; i++)
         {
             imageChosePeople[i].sprite = spritePeopleList[i];
@@ -59,11 +59,64 @@ public class WinSystem : MonoBehaviour
             imageChoseWeapons[i].sprite = spriteWeaponList[i];
         }
     }
-    private void rand()//chose who, where and what is the culprit
+    private void Rand()//chose who, where and what is the culprit
     {
         killerK = Random.Range(0, People.Count);
         roomK = Random.Range(0, Rooms.Count);
         weaponK = Random.Range(0, Weapons.Count);
+        switch (roomK)
+        {
+            case 0:
+                Instantiate(fingerPrintPanel, new Vector3(roomBloodPrintPanels[roomK].transform.position.x + Random.Range(3, 43), roomBloodPrintPanels[roomK].transform.position.y+0.13f, roomBloodPrintPanels[roomK].transform.position.z + Random.Range(0, 33)), Quaternion.Euler(90, Random.Range(0, 360), Random.Range(0, 360)));
+                Instantiate(bloodPanel, new Vector3(roomBloodPrintPanels[roomK].transform.position.x + Random.Range(3, 43), roomBloodPrintPanels[roomK].transform.position.y + 0.13f, roomBloodPrintPanels[roomK].transform.position.z + Random.Range(0, 33)), Quaternion.Euler(90, Random.Range(0, 360), Random.Range(0, 360)));
+                break;
+            case 1:
+                Instantiate(fingerPrintPanel, new Vector3(roomBloodPrintPanels[roomK].transform.position.x + Random.Range(3, 53), roomBloodPrintPanels[roomK].transform.position.y + 0.13f, roomBloodPrintPanels[roomK].transform.position.z + Random.Range(3, 23)), Quaternion.Euler(90, Random.Range(0, 360), Random.Range(0, 360)));
+                Instantiate(bloodPanel, new Vector3(roomBloodPrintPanels[roomK].transform.position.x + Random.Range(3, 53), roomBloodPrintPanels[roomK].transform.position.y + 0.13f, roomBloodPrintPanels[roomK].transform.position.z + Random.Range(3, 23)), Quaternion.Euler(90, Random.Range(0, 360), Random.Range(0, 360)));
+                break;
+            case 2:
+                int rand3 = Random.Range(1,4);
+                switch (rand3)
+                {
+                    case 0:
+                        Instantiate(fingerPrintPanel, new Vector3(roomBloodPrintPanels[roomK].transform.position.x + Random.Range(3, 26), roomBloodPrintPanels[roomK].transform.position.y + 0.13f, roomBloodPrintPanels[roomK].transform.position.z + Random.Range(3, 33)), Quaternion.Euler(90, Random.Range(0, 360), Random.Range(0, 360)));
+                        Instantiate(bloodPanel, new Vector3(roomBloodPrintPanels[roomK].transform.position.x + Random.Range(3, 26), roomBloodPrintPanels[roomK].transform.position.y + 0.13f, roomBloodPrintPanels[roomK].transform.position.z + Random.Range(3, 33)), Quaternion.Euler(90, Random.Range(0, 360), Random.Range(0, 360)));
+                        break;
+                    case 1:
+                        Instantiate(fingerPrintPanel, new Vector3(roomBloodPrintPanels[roomK].transform.position.x + Random.Range(32, 62), roomBloodPrintPanels[roomK].transform.position.y + 0.13f, roomBloodPrintPanels[roomK].transform.position.z + Random.Range(-7, 13)), Quaternion.Euler(90, Random.Range(0, 360), Random.Range(0, 360)));
+                        Instantiate(bloodPanel, new Vector3(roomBloodPrintPanels[roomK].transform.position.x + Random.Range(32, 62), roomBloodPrintPanels[roomK].transform.position.y + 0.13f, roomBloodPrintPanels[roomK].transform.position.z + Random.Range(-7, 13)), Quaternion.Euler(90, Random.Range(0, 360), Random.Range(0, 360)));
+                        break;
+                    case 2:
+                        Instantiate(fingerPrintPanel, new Vector3(roomBloodPrintPanels[roomK].transform.position.x + Random.Range(32, 62), roomBloodPrintPanels[roomK].transform.position.y + 0.13f, roomBloodPrintPanels[roomK].transform.position.z + Random.Range(16, 26)), Quaternion.Euler(90, Random.Range(0, 360), Random.Range(0, 360)));
+                        Instantiate(bloodPanel, new Vector3(roomBloodPrintPanels[roomK].transform.position.x + Random.Range(32, 62), roomBloodPrintPanels[roomK].transform.position.y + 0.13f, roomBloodPrintPanels[roomK].transform.position.z + Random.Range(16, 26)), Quaternion.Euler(90, Random.Range(0, 360), Random.Range(0, 360)));
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 3:
+                Instantiate(fingerPrintPanel, new Vector3(roomBloodPrintPanels[roomK].transform.position.x + Random.Range(3, 34), roomBloodPrintPanels[roomK].transform.position.y + 0.13f, roomBloodPrintPanels[roomK].transform.position.z + Random.Range(3, 21)), Quaternion.Euler(90, Random.Range(0, 360), Random.Range(0, 360)));
+                Instantiate(bloodPanel, new Vector3(roomBloodPrintPanels[roomK].transform.position.x + Random.Range(3, 34), roomBloodPrintPanels[roomK].transform.position.y + 0.13f, roomBloodPrintPanels[roomK].transform.position.z + Random.Range(3, 21)), Quaternion.Euler(90, Random.Range(0, 360), Random.Range(0, 360)));
+                break;
+            case 4:
+                int rand5 = Random.Range(1, 4);
+                switch (rand5)
+                {
+                    case 0:
+                        Instantiate(fingerPrintPanel, new Vector3(roomBloodPrintPanels[roomK].transform.position.x + Random.Range(3, 47), roomBloodPrintPanels[roomK].transform.position.y + 0.13f, roomBloodPrintPanels[roomK].transform.position.z + Random.Range(3, 33)), Quaternion.Euler(90, Random.Range(0, 360), Random.Range(0, 360)));
+                        Instantiate(bloodPanel, new Vector3(roomBloodPrintPanels[roomK].transform.position.x + Random.Range(3, 47), roomBloodPrintPanels[roomK].transform.position.y + 0.13f, roomBloodPrintPanels[roomK].transform.position.z + Random.Range(3, 33)), Quaternion.Euler(90, Random.Range(0, 360), Random.Range(0, 360)));
+                        break;
+                    case 1:
+                        Instantiate(fingerPrintPanel, new Vector3(roomBloodPrintPanels[roomK].transform.position.x + Random.Range(47, 97), roomBloodPrintPanels[roomK].transform.position.y + 0.13f, roomBloodPrintPanels[roomK].transform.position.z + Random.Range(13, 33)), Quaternion.Euler(90, Random.Range(0, 360), Random.Range(0, 360)));
+                        Instantiate(bloodPanel, new Vector3(roomBloodPrintPanels[roomK].transform.position.x + Random.Range(47, 97), roomBloodPrintPanels[roomK].transform.position.y + 0.13f, roomBloodPrintPanels[roomK].transform.position.z + Random.Range(13, 33)), Quaternion.Euler(90, Random.Range(0, 360), Random.Range(0, 360)));
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
     }
     private void Update()
     {
@@ -76,9 +129,6 @@ public class WinSystem : MonoBehaviour
             canChoos = false;
             choosTime += Time.deltaTime;
         }
-        people.text = "Person:" + killerChose;
-        rooms.text = "room:" + roomChose;
-        weapons.text = "weapon:" + weaponChose;
         imageKiller.sprite = spritePeopleList[killerChose];
         imageRoom.sprite = spriteRoomList[roomChose];
         imageWeapon.sprite = spriteWeaponList[weaponChose];
