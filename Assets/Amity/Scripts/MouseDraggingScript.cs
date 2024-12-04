@@ -50,7 +50,7 @@ public class MouseDraggingScript : MonoBehaviour
         screenPos.Enable();
         press.Enable();
         screenPos.performed += context => { curScreenPos = context.ReadValue<Vector2>(); };
-        press.performed += _ => { if (isOnSortItem) { if (GetComponent<WeaponTrash>().done == false) { if (isClickedOn) isDragging = true; StartCoroutine(Drag()); GetComponent<WeaponTrash>().pickUp = true; } } else { if (isClickedOn) isDragging = true; StartCoroutine(Drag()); } };
+        press.performed += _ => { if (isOnSortItem) { if (gameObject.GetComponent<WeaponTrash>().done == false) { if (isClickedOn) isDragging = true; StartCoroutine(Drag()); gameObject.GetComponent<WeaponTrash>().pickUp = true; } } else { if (isClickedOn) isDragging = true; StartCoroutine(Drag()); } };
         press.canceled += _ => { isDragging = false; };
     }
    
@@ -71,7 +71,6 @@ public class MouseDraggingScript : MonoBehaviour
             }
         }
         else{
-            isDragging = true;
             Vector3 offset = transform.position - WorldPos;
             while (isDragging)
             {

@@ -17,20 +17,18 @@ public class FingerPrintSlip : MonoBehaviour
         gameObject.GetComponent<Renderer>().material = imageList[ThisSlip-1];
     }
 
-    private void OnMouseDown()
-    {
-        Checking = false;
-        released = false;
-        confirmButton.Picked = 0;
-    }
-
-    private void OnMouseUp()
-    {
-        released = true;
-    }
-
     void Update()
     {
+        if(GetComponent<MouseDraggingScript>().isDragging)
+        {
+            Checking = false;
+            released = false;
+            confirmButton.Picked = 0;
+        }
+        else
+        {
+            released = true;
+        }
         if (released)
         {
             if(Vector3.Distance(transform.position,GuessingArea.transform.position) < 1 && !Checking)

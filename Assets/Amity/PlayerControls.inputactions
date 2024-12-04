@@ -110,7 +110,7 @@
                 {
                     "name": "",
                     "id": "ea6c86d7-4fdf-4ffe-bf7e-78701ffd57d5",
-                    "path": "<SwitchProControllerHID>/buttonWest",
+                    "path": "<SwitchProControllerHID>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Switch",
@@ -121,7 +121,7 @@
                 {
                     "name": "",
                     "id": "7207aa75-576f-4fcc-ac2a-296d0e06a8f2",
-                    "path": "<XInputController>/buttonWest",
+                    "path": "<XInputController>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Xbox",
@@ -132,7 +132,7 @@
                 {
                     "name": "",
                     "id": "1c079e11-0646-4f40-a621-75b202857417",
-                    "path": "<DualShockGamepad>/buttonWest",
+                    "path": "<DualShockGamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Playstation",
@@ -143,7 +143,7 @@
                 {
                     "name": "",
                     "id": "013d0a79-8e67-413f-a256-f67827f79210",
-                    "path": "<SwitchProControllerHID>/buttonEast",
+                    "path": "<SwitchProControllerHID>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Switch",
@@ -154,7 +154,7 @@
                 {
                     "name": "",
                     "id": "9af8fbfa-7693-430f-8e2a-39a59c284abf",
-                    "path": "<XInputController>/buttonEast",
+                    "path": "<XInputController>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Xbox",
@@ -165,7 +165,7 @@
                 {
                     "name": "",
                     "id": "4c883c54-d65a-46ee-b327-eb039693dbb0",
-                    "path": "<DualShockGamepad>/buttonEast",
+                    "path": "<DualShockGamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Playstation",
