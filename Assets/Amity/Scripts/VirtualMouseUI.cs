@@ -14,12 +14,12 @@ public class VirtualMouseUI : MonoBehaviour
         virtualMouseInput = GetComponent<VirtualMouseInput>();
     }
 
-
     private void Update()
     {
         transform.localScale = Vector3.one * 1f / canvasRectTransform.localScale.x;
         transform.SetAsLastSibling();
     }
+
     private void LateUpdate()
     {
         Vector2 virtualMousePosition = virtualMouseInput.virtualMouse.position.value;
