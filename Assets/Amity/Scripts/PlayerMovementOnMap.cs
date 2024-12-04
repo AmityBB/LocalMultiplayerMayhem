@@ -143,28 +143,60 @@ public class PlayerMovementOnMap : Player
                 MoveDir.z = 0;
             }
 
-            if (!Physics.Raycast(transform.position, MoveDir, /*out RaycastHit Hit,*/ 6, ~layerMask))
+            if (!Physics.Raycast(transform.position, MoveDir, 6, ~layerMask))
             {
                 /*transform.rotation = Quaternion.LookRotation(MoveDir);*/
 
                 if (MoveDir.x > 0)
                 {
-                    MoveDir.x = 10;
+                    if (MoveDir.z == 0)
+                    {
+                        MoveDir.x = 10;
+                    }
+                    else
+                    {
+                        MoveDir.z = 0;
+                        MoveDir.x = 0;
+                    }
                 }
 
                 if (MoveDir.x < 0)
                 {
-                    MoveDir.x = -10;
+                    if (MoveDir.z == 0)
+                    {
+                        MoveDir.x = -10;
+                    }
+                    else
+                    {
+                        MoveDir.z = 0;
+                        MoveDir.x = 0;
+                    }
                 }
 
                 if (MoveDir.z > 0)
                 {
-                    MoveDir.z = 10;
+                    if (MoveDir.x == 0)
+                    {
+                        MoveDir.z = 10;
+                    }
+                    else
+                    {
+                        MoveDir.z = 0;
+                        MoveDir.x = 0;
+                    }
                 }
 
                 if (MoveDir.z < 0)
                 {
-                    MoveDir.z = -10;
+                    if (MoveDir.x == 0)
+                    {
+                        MoveDir.z = -10;
+                    }
+                    else
+                    {
+                        MoveDir.z = 0;
+                        MoveDir.x = 0;
+                    }
                 }
 
                 targetPos = this.transform.localPosition + MoveDir;

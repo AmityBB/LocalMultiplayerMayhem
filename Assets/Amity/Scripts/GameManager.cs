@@ -1,11 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class Test : MonoBehaviour
 {
+
+    public static Test Instance { get; private set; }
+
     public List<Transform> KillerSpawns;
     public List<GameObject> player;
     [SerializeField]
@@ -29,49 +34,77 @@ public class Test : MonoBehaviour
     private Canvas stepsLeftCan;
     public Canvas TitleScreen;
     public Light mainLight;
-    private Vector2 MouseDir;
-    private bool MouseMove;
+    
+    public bool GameStarted;
 
-    [SerializeField] private InputAction inputDir;
+    public event EventHandler OnGameDeviceChanged;
 
+    public enum GameDevice
+    {
+        KeyboardMouse,
+        Gamepad,
+    }
+
+
+    
+    private GameDevice activeGameDevice;
     private void Awake()
     {
-        inputDir.Enable();
-        inputDir.performed += context => { MouseDir = context.ReadValue<Vector2>() * 7; MouseMove = true; Debug.Log(context.ReadValue<Vector2>()); };
-        inputDir.canceled += context => { MouseDir = Vector2.zero; };
+        Instance = this;
+        
+
+        InputSystem.onActionChange += InputSystem_OnActionChange;
     }
+
+    private void InputSystem_OnActionChange(object arg1, InputActionChange inputActionChange)
+    {
+        if(inputActionChange == InputActionChange.ActionPerformed && arg1 is InputActionChange)
+        {
+            InputAction inputAction = arg1 as InputAction;
+            if (inputAction.activeControl.device.displayName == "VirtualMouse")
+            {
+                return;
+            }
+            if(inputAction.activeControl.device is Gamepad)
+            {
+                if(activeGameDevice != GameDevice.Gamepad)
+                {
+                    ChangeActiveGameDevice(GameDevice.Gamepad);
+                }
+            }
+            else
+            {
+                if(activeGameDevice != GameDevice.KeyboardMouse)
+                {
+                    ChangeActiveGameDevice(GameDevice.KeyboardMouse);
+                }
+            }
+        }
+    }
+
+    private void ChangeActiveGameDevice(GameDevice activeGameDevice)
+    {
+        this.activeGameDevice = activeGameDevice;
+
+        Cursor.visible = activeGameDevice == GameDevice.KeyboardMouse;
+
+        OnGameDeviceChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public GameDevice GetActiveGameDevice()
+    {
+        return activeGameDevice;
+    }
+
     void Start()
     {
         Cam = FindObjectOfType<Camera>();
         inputManager = FindObjectOfType<PlayerInputManager>().gameObject;
     }
 
-    private void FixedUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            inputDir.Disable();
-            MouseDir = Vector2.zero;
-        }
-        if(Input.GetKeyDown(KeyCode.G))
-        {
-            StartRound();
-        }
-        /*IncreaseVector();*/
-    }
-
-    public void IncreaseVector()
-    {
-        Vector2 moveVector = MouseDir;
-        Vector2 currentPosition = Mouse.current.position.ReadValue();
-        Vector2 newPosition = currentPosition + moveVector;
-        Mouse.current.WarpCursorPosition(newPosition);
-    }
     
     public void StartRound()
-    {
-        /*Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;*/
+    { 
         stepsLeftCan.GetComponent<Canvas>().enabled = true;
         playerWithTurn = 0;
         for (int i = 0; i < player.Count; i++)
@@ -79,6 +112,7 @@ public class Test : MonoBehaviour
             player[i].GetComponent<PlayerMovementOnMap>().enabled = true;
         }
         player[0].GetComponent<PlayerMovementOnMap>().MyTurn();
+        GameStarted = true;
     }
 
     public void TurnEnd()
@@ -100,8 +134,7 @@ public class Test : MonoBehaviour
     {
         if (!PrintActive)
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            
             stepsLeftCan.GetComponent<Canvas>().enabled = false;
             Cam.transform.rotation = new Quaternion(0, 0, 0, 0);
             clone = Instantiate(Minigames[0], Cam.transform.position + (Cam.transform.forward * 16), Quaternion.identity);
@@ -110,8 +143,7 @@ public class Test : MonoBehaviour
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            
             stepsLeftCan.GetComponent<Canvas>().enabled = true;
             Cam.transform.rotation = Quaternion.Euler(60, 0, 0);
             Destroy(clone);
@@ -137,7 +169,7 @@ public class Test : MonoBehaviour
                 player[i].GetComponent<PlayerMovementOnMap>().enabled = false;
                 player[i].GetComponent<PlayerMovementInMini>().enabled = true;
             }
-            clone = Instantiate(Killer, KillerSpawns[Random.Range(0, 7)].position, Quaternion.identity);
+            clone = Instantiate(Killer, KillerSpawns[UnityEngine.Random.Range(0, 7)].position, Quaternion.identity);
             StartCoroutine(UVGameTimer());
             UVActive = true;
         }
@@ -168,8 +200,7 @@ public class Test : MonoBehaviour
     {
         if (!SortingActive)
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            
             stepsLeftCan.GetComponent<Canvas>().enabled = false;
             clone = Instantiate(Minigames[1], (Cam.transform.position + new Vector3(0,0,3)) + (Cam.transform.forward * 16), Quaternion.identity);
             clone.GetComponent<SorteerMinigame>().active = true;
@@ -179,8 +210,7 @@ public class Test : MonoBehaviour
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            
             stepsLeftCan.GetComponent<Canvas>().enabled = true;
             Destroy(clone);
             Cam.transform.rotation = Quaternion.Euler(60,0,0);
@@ -212,6 +242,7 @@ public class Test : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             TitleScreen.GetComponent<Canvas>().enabled = true;
+            GameStarted = false;
         }
     }
 

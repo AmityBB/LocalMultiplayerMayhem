@@ -17,6 +17,9 @@ public class MouseDraggingScript : MonoBehaviour
     Camera cam;
     private bool isDragging;
 
+    [SerializeField]
+    private GameObject virtualMouse;
+
     private Vector3 WorldPos
     {
         get
@@ -41,6 +44,7 @@ public class MouseDraggingScript : MonoBehaviour
 
     private void Awake()
     {
+        virtualMouse = FindObjectOfType<VirtualCursorUI>().gameObject;
         cam = Camera.main;
         screenPos.Enable();
         press.Enable();
