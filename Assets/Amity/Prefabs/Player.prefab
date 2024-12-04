@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4598580528117946846}
   - component: {fileID: 1370118364198799138}
   - component: {fileID: 6487573298288557088}
+  - component: {fileID: -3044581724562554499}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -112,6 +113,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: bd366bd8-4fed-42d6-a8d6-5041387a0f0b
     m_ActionName: Game/Select[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 34abf7e4-26b4-4640-8126-d347060cbfe9
+    m_ActionName: Game/Click[/SwitchProControllerHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ad86dd9d-d747-423f-a88b-5afb69ceec99
+    m_ActionName: Game/MiniMove
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Game
@@ -133,10 +142,12 @@ MonoBehaviour:
   PlayerBlocker: {fileID: 1370118364198799138}
   thisTurn: 0
   Stepsleft: 0
+  canMove: 1
   canRoll: 0
   nearPrint: 0
   nearSort: 0
   nearUV: 0
+  moving: 0
   ColorSpot: {fileID: 384615013055483375}
   textMeshProUGUI: {fileID: 0}
 --- !u!54 &-8742636599320207244
@@ -181,7 +192,16 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   PlayerBlocker: {fileID: 1370118364198799138}
   thisTurn: 0
-  speed: 210
+  speed: 17
+  moveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 6895c4db-a36f-4709-8094-45ffbc095d5c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!65 &1370118364198799138
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -224,6 +244,32 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.65202636, y: 2.5584497, z: 0.4240889}
   m_Center: {x: -0.00076921785, y: 0.28249234, z: 0.020528834}
+--- !u!143 &-3044581724562554499
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949969915242313103}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7871607500878349206
 GameObject:
   m_ObjectHideFlags: 0

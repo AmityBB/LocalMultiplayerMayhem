@@ -1567,15 +1567,18 @@ MonoBehaviour:
   killerChose: 0
   roomChose: 0
   weaponChose: 0
-  people: {fileID: 0}
-  rooms: {fileID: 0}
-  weapons: {fileID: 0}
   imageKiller: {fileID: 0}
   imageRoom: {fileID: 0}
   imageWeapon: {fileID: 0}
-  imagePeopleList: []
-  imageRoomList: []
-  imageWeaponList: []
+  imageChosePeople: []
+  imageChoseRooms: []
+  imageChoseWeapons: []
+  spritePeopleList: []
+  spriteRoomList: []
+  spriteWeaponList: []
+  fingerPrintPanel: {fileID: 0}
+  bloodPanel: {fileID: 0}
+  roomBloodPrintPanels: []
   choosTime: 0
   canChoos: 0
 --- !u!1 &301456001

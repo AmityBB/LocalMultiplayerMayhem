@@ -200,7 +200,7 @@ public class Test : MonoBehaviour
     {
         if (!SortingActive)
         {
-            
+            Cam.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
             stepsLeftCan.GetComponent<Canvas>().enabled = false;
             clone = Instantiate(Minigames[1], (Cam.transform.position + new Vector3(0,0,3)) + (Cam.transform.forward * 16), Quaternion.identity);
             clone.GetComponent<SorteerMinigame>().active = true;
@@ -210,7 +210,7 @@ public class Test : MonoBehaviour
         }
         else
         {
-            
+            Cam.transform.rotation = Quaternion.Euler(60f, 0f, 0f);
             stepsLeftCan.GetComponent<Canvas>().enabled = true;
             Destroy(clone);
             Cam.transform.rotation = Quaternion.Euler(60,0,0);

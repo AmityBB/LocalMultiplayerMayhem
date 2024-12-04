@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 2868298266853060006}
   - component: {fileID: -8348278396194377285}
   - component: {fileID: 5232117027576161155}
+  - component: {fileID: 9044351324429833562}
   m_Layer: 0
   m_Name: trash5
   m_TagString: Untagged
@@ -240,3 +241,76 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.37700605}
   m_Center: {x: 0, y: 0, z: -0.0053389072}
+--- !u!114 &9044351324429833562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8912873232872623750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d503221e6cbf00341bb25934f7078bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  press:
+    m_Name: Press
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 1d51cfbd-dc70-4317-8c4c-19d6f12d1814
+    m_Processors: 
+    m_Interactions: Press
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d625e0a9-8d9e-4450-8d6d-9ea2df99822f
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 9b2720d4-6777-48e0-b62e-6aa4c27bb960
+      m_Path: <SwitchProControllerHID>/buttonEast
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 5ff036cf-db9f-44a5-8beb-05fba0711185
+      m_Path: <XInputController>/buttonEast
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 25206224-d99d-4839-bbcb-5a7eccc3e3c7
+      m_Path: <DualShockGamepad>/buttonEast
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    m_Flags: 0
+  screenPos:
+    m_Name: Screen Pos
+    m_Type: 0
+    m_ExpectedControlType: Vector2
+    m_Id: 4990c5dc-a44e-40cc-862c-f708b3d0cc79
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 1bc2ae88-3381-417d-823b-5efbcdd7a479
+      m_Path: <VirtualMouse>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Screen Pos
+      m_Flags: 0
+    m_Flags: 0
+  isDragging: 0
+  virtualMouse: {fileID: 0}
+  isOnSortItem: 1
