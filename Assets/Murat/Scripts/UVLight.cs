@@ -6,10 +6,15 @@ public class UVLight : MonoBehaviour
     public List<Material> reveal;
     public Light light;
     public bool active;
+    Test gameMaster;
     // Update is called once per frame
+    private void Start()
+    {
+        gameMaster = FindObjectOfType<Test>();
+    }
     void Update()
     {
-        if (active)
+        if (gameMaster.UVActive)
         {
             light.enabled =true;
             for (int i = 0; i < reveal.Count; i++)//zorgt foor de UV 

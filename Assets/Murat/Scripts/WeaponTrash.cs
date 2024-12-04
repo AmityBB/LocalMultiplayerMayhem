@@ -15,7 +15,7 @@ public class WeaponTrash : MonoBehaviour
     private SorteerMinigame SorteerMinigame;
     [SerializeField] private GameObject table;
 
-    float extraHeight = 1;
+    float extraHeight = 0.5f;
     private void OnMouseDown()
     {
         if (!done)
@@ -42,11 +42,11 @@ public class WeaponTrash : MonoBehaviour
     }
     void Update()
     {
-        screanwrap();//om te verkomen dat het van de tafel af komt
+        Screanwrap();//om te verkomen dat het van de tafel af komt
         NotDone();//wanneer je niet op de juiste plek heb gezet
         Done();//wanneer je wel op de juiste plek heb gezet
     }
-    void screanwrap()
+    void Screanwrap()
     {
         float extraDist = 3.5f;
         if (!done)
@@ -74,22 +74,22 @@ public class WeaponTrash : MonoBehaviour
             {
                 if (gameObject.transform.position.x > checkSides + table.transform.position.x)
                 {
-                    getpoints();
+                    Getpoints();
                 }
                 else if (gameObject.transform.position.x < -checkSides + table.transform.position.x)
                 {
-                    getdeathPoints();
+                    GetdeathPoints();
                 }
             }
             if (!isTrash)
             {
                 if (gameObject.transform.position.x < -checkSides + table.transform.position.x)
                 {
-                    getpoints();
+                    Getpoints();
                 }
                 else if (gameObject.transform.position.x > checkSides + table.transform.position.x)
                 {
-                    getdeathPoints();
+                    GetdeathPoints();
                 }
             }
         }
@@ -134,13 +134,13 @@ public class WeaponTrash : MonoBehaviour
             }
         }
     }
-    void getpoints()//je krijgt winpunten
+    void Getpoints()//je krijgt winpunten
     {
         SorteerMinigame.points++;
         done = true;
         correct = true;
     }
-    void getdeathPoints()//je krijgt verliespunten
+    void GetdeathPoints()//je krijgt verliespunten
     {
         SorteerMinigame.deathPoints++;
         done = true;
