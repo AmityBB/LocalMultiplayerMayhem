@@ -6,104 +6,64 @@ using UnityEngine.UI;
 
 public class ButtonCheck : MonoBehaviour
 {
-    [SerializeField] private TMP_Dropdown killerDropdown;
-    [SerializeField] private TMP_Dropdown roomDropdown;
-    [SerializeField] private TMP_Dropdown weaponDropdown;
+    [SerializeField] private int killerPick;
+    [SerializeField] private int roomPick;
+    [SerializeField] private int weaponPick;
 
-    [SerializeField] private Image imageKiller;
-    [SerializeField] private Image imageRoom;
-    [SerializeField] private Image imageWeapon;
 
-    [SerializeField] private List<Sprite> imagePeopleList;
-    [SerializeField] private List<Sprite> imageRoomList;
-    [SerializeField] private List<Sprite> imageWeaponList;
 
     WinSystem winSystem;
+    CameraScript cameraScript;
+    Winbutton winButton;
     private void Start()
     {
         winSystem = FindObjectOfType<WinSystem>();
+        cameraScript = FindObjectOfType<CameraScript>();
+        winButton = FindObjectOfType<Winbutton>();
     }
     private void Update()
     {
-        imageKiller.sprite = imagePeopleList[killerDropdown.value];
-        imageRoom.sprite = imageRoomList[roomDropdown.value];
-        imageWeapon.sprite = imageWeaponList[weaponDropdown.value];
+
     }
-    public void Check()
+    public void KillerPick()
     {
-        /*
-        if (RoomCheck())
+        if (cameraScript.chosing==0&& winSystem.canChoos)
         {
-            //corret roomK
-        }
-        else
-        {
-            //incorret roomK
-        }
-
-        if (WaponCheck())
-        {
-            //corret weaponK
-        }
-        else
-        {
-            //incorret weaponK
-        }
-
-        if (KillerCheck())
-        {
-            //corret person
-        }
-        else
-        {
-            //incorret person
-        }
-        */
-        if (RoomCheck() && WaponCheck() && KillerCheck())
-        {
-            Debug.Log("you win");
-        }
-        else
-        {
-            Debug.Log("you lose");
+            winButton.killerPick = killerPick;
+            winSystem.killerChose = killerPick;
+            winSystem.choosTime = 0;
+            cameraScript.chosing++;
         }
     }
-
-    private bool KillerCheck()
+    public void RoomPick()
     {
-        if (winSystem.People[killerDropdown.value] == winSystem.People[winSystem.killerK])
+        if (cameraScript.chosing == 1 && winSystem.canChoos)
         {
-            return true;
+            winButton.roomPick = roomPick;
+            winSystem.roomChose = roomPick;
+            winSystem.choosTime = 0;
+            cameraScript.chosing++;
         }
-        else
+    }
+    public void WeaponPick()
+    {
+        if (cameraScript.chosing == 2 && winSystem.canChoos)
         {
-            return false;
+            winButton.weaponPick = weaponPick;
+            winSystem.weaponChose = weaponPick;
+            winSystem.choosTime = 0;
+            cameraScript.chosing++;
+        }
+    }
+    public void TryAgain()
+    {
+        if (cameraScript.chosing == 3 && winSystem.canChoos)
+        {
+            cameraScript.chosing = 0;
+            winSystem.choosTime = 0;
         }
     }
 
-    private bool RoomCheck()
-    {
-        if (winSystem.Rooms[roomDropdown.value] == winSystem.Rooms[winSystem.roomK])
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private bool WaponCheck()
-    {
-        if (winSystem.Weapons[weaponDropdown.value] == winSystem.Weapons[winSystem.weaponK])
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
 }
 

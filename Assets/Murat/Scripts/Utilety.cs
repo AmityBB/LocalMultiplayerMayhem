@@ -6,9 +6,15 @@ using UnityEngine.SceneManagement;
 public class Utilety : MonoBehaviour
 {
     [SerializeField] private GameObject gesscreen;
+    [SerializeField] private UVLight lightUV;
     public void Back()
     {
         gesscreen.SetActive(false);
+    }
+    public void OnOff()
+    {
+        lightUV = FindObjectOfType<UVLight>();
+        lightUV.active = !lightUV.active;
     }
     public void GoToStart()
     {
