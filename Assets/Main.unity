@@ -13006,7 +13006,7 @@ MonoBehaviour:
   chosing: 3
   camSpeed: 15
   playerTime: 0
-  gessing: 0
+  guessing: 0
   gesScreens:
   - {fileID: 0}
   - {fileID: 0}
@@ -20345,6 +20345,7 @@ MonoBehaviour:
   stepsLeftCan: {fileID: 858873017}
   TitleScreen: {fileID: 394914733}
   TitleBackground: {fileID: 1078509426}
+  Titlecam: {fileID: 0}
   mainLight: {fileID: 1262949759}
   GameStarted: 0
 --- !u!4 &1800487801
