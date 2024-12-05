@@ -33,6 +33,8 @@ public class Test : MonoBehaviour
     [SerializeField]
     private Canvas stepsLeftCan;
     public Canvas TitleScreen;
+    public Canvas TitleBackground;
+    public Camera Titlecam;
     public Light mainLight;
     
     public bool GameStarted;
@@ -98,7 +100,6 @@ public class Test : MonoBehaviour
 
     void Start()
     {
-        Cam = FindObjectOfType<Camera>();
         inputManager = FindObjectOfType<PlayerInputManager>().gameObject;
     }
 
@@ -136,7 +137,6 @@ public class Test : MonoBehaviour
         {
             
             stepsLeftCan.GetComponent<Canvas>().enabled = false;
-            Cam.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
             clone = Instantiate(Minigames[0], Cam.transform.position + (Cam.transform.forward * 16), Quaternion.Euler(90,0,0));
             PrintActive = true;
             player[playerWithTurn].GetComponent<PlayerMovementOnMap>().canMove = false;
@@ -228,22 +228,54 @@ public class Test : MonoBehaviour
         }
     }
 
+    public void GuessMinigame()
+    {
+        if (!Camera.main.GetComponent<CameraScript>().guessing)
+        {
+            stepsLeftCan.GetComponent<Canvas>().enabled = false;
+            Camera.main.GetComponent<CameraScript>().guessing = true;
+            player[playerWithTurn].GetComponent<PlayerMovementOnMap>().canMove = false;
+        }
+        else
+        {
+            stepsLeftCan.GetComponent<Canvas>().enabled = true;
+            Camera.main.GetComponent<CameraScript>().guessing = false;
+            if (player[playerWithTurn].GetComponent<PlayerMovementOnMap>().Stepsleft == 0) { TurnEnd(); }
+            else
+            {
+                player[playerWithTurn].GetComponent<PlayerMovementOnMap>().canMove = true;
+            }
+        }
+    }
     public void CheckPlayer()
     {
         if(player.Count == 0)
-        {
-            if(UVActive)
-            {
-                StopAllCoroutines();
-                UVMinigame();
-                stepsLeftCan.GetComponent<Canvas>().enabled = false;
-            }
-            inputManager.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            TitleScreen.GetComponent<Canvas>().enabled = true;
-            GameStarted = false;
+        { 
+            EndRound();
         }
+    }
+
+    public void EndRound()
+    {      
+        for(int i = 0; i < player.Count; i++)
+        {
+            Destroy(player[i].gameObject);
+            player.Remove(player[i].gameObject);
+            
+        }
+        if (UVActive)
+        {
+            StopAllCoroutines();
+            UVMinigame();
+            stepsLeftCan.GetComponent<Canvas>().enabled = false;
+        }
+        inputManager.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        TitleScreen.GetComponent<Canvas>().enabled = true;
+        TitleBackground.GetComponent<Canvas>().enabled = true;
+        Titlecam.GetComponent<Camera>().enabled = true;
+        GameStarted = false;
     }
 
     

@@ -316,6 +316,8 @@ MonoBehaviour:
       m_Action: Scroll
       m_Flags: 0
     m_Flags: 0
+  maxZoom: 0
+  minZoom: 0
 --- !u!114 &1846104908552231526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -801,6 +803,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 450beaf7c80bd96449550060f3a5a896, type: 2}
   - {fileID: 2100000, guid: 1a46105153c80114eac54cd0a840f9f5, type: 2}
   - {fileID: 2100000, guid: 339586373c8c12a48ab5b5396222351c, type: 2}
+  gameManager: {fileID: 0}
   temp: {fileID: 0}
 --- !u!1 &5026810326123745848
 GameObject:
@@ -1055,6 +1058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Picked: 0
   CorrectSlip: 0
+  gameManager: {fileID: 0}
   strikes: 3
 --- !u!1 &5350570866246739870
 GameObject:
@@ -1341,6 +1345,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 450beaf7c80bd96449550060f3a5a896, type: 2}
   - {fileID: 2100000, guid: 1a46105153c80114eac54cd0a840f9f5, type: 2}
   - {fileID: 2100000, guid: 339586373c8c12a48ab5b5396222351c, type: 2}
+  gameManager: {fileID: 0}
   temp: {fileID: 0}
 --- !u!1 &7190920402774457132
 GameObject:
@@ -2030,7 +2035,7 @@ Transform:
   m_GameObject: {fileID: 8881306497219053150}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.13, y: 92.84, z: -24.86}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

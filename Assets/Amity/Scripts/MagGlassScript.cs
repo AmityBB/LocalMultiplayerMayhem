@@ -34,8 +34,8 @@ public class MagGlassScript : MonoBehaviour
     }
     private void Start()
     {
-        maxZoom = 80;
-        minZoom = 78;
+        maxZoom = 81;
+        minZoom = 79;
         TargetZoom = UnityEngine.Random.Range(minZoom, maxZoom);
     }
 

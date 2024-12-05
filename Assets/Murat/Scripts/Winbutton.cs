@@ -21,11 +21,11 @@ public class Winbutton : MonoBehaviour
         {
             if (RoomCheck() && WaponCheck() && KillerCheck())
             {
-                Debug.Log("you win");
+                Debug.Log("Win");
             }
             else
             {
-                Debug.Log("you lose");
+                Debug.Log("Lose");
             }
         }
     }

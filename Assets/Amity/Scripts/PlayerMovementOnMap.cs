@@ -18,6 +18,7 @@ public class PlayerMovementOnMap : Player
     public bool nearPrint;
     public bool nearSort;
     public bool nearUV;
+    public bool nearGuess;
     public bool moving;
     
     private LayerMask layerMask;
@@ -104,6 +105,10 @@ public class PlayerMovementOnMap : Player
             {
                 gameManager.UVMinigame();
             }
+            if (nearGuess)
+            {
+                gameManager.GuessMinigame();
+            }
             if (gameManager.UVActive && Stepsleft == 0)
             {
                 gameManager.TurnEnd();
@@ -124,7 +129,6 @@ public class PlayerMovementOnMap : Player
     {
         if (_context.performed && Stepsleft > 0 && canMove && gameObject.GetComponent<PlayerMovementOnMap>().enabled && gameManager.UVActive == false)
         {
-            Debug.Log(_context);
             if (_context.ReadValue<Vector2>().x != 0)
             {
                 MoveDir.x = _context.ReadValue<Vector2>().x * 10;
