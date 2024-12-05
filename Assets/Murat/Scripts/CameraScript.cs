@@ -9,7 +9,6 @@ public class CameraScript : MonoBehaviour
     private Test gameMaster;
 
     [SerializeField] private GameObject m_Map;
-    [SerializeField] private GameObject m_Printgame;
 
     public int chosing;
     public float camSpeed = 15;
