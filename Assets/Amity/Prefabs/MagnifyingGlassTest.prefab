@@ -120,6 +120,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d503221e6cbf00341bb25934f7078bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  press:
+    m_Name: Press
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 1d51cfbd-dc70-4317-8c4c-19d6f12d1814
+    m_Processors: 
+    m_Interactions: Press
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d625e0a9-8d9e-4450-8d6d-9ea2df99822f
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 9b2720d4-6777-48e0-b62e-6aa4c27bb960
+      m_Path: <Gamepad>/rightTrigger
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    m_Flags: 0
+  screenPos:
+    m_Name: Screen Pos
+    m_Type: 0
+    m_ExpectedControlType: Vector2
+    m_Id: 4990c5dc-a44e-40cc-862c-f708b3d0cc79
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 1bc2ae88-3381-417d-823b-5efbcdd7a479
+      m_Path: <VirtualMouse>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Screen Pos
+      m_Flags: 0
+    m_Flags: 0
+  isDragging: 0
+  virtualMouse: {fileID: 0}
+  isOnSortItem: 0
 --- !u!114 &3329710176688401496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daae2e579b7c59442ab5eef18754e669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  released: 0
+  Checking: 0
   GuessingArea: {fileID: 2463045273363694583}
   ThisSlip: 2
   confirmButton: {fileID: 4711977721391446515}
@@ -243,7 +290,32 @@ MonoBehaviour:
   Distance: 4
   TargetZoom: -35.43988
   MagView: {fileID: 5634580332298444474}
-  scale: 0.05
+  scale: 0.008
+  Scroll:
+    m_Name: Scroll
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e4527004-55fb-4fbc-8c5b-10d9de674c19
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 8e1bdf5f-9660-43ec-a85f-a3011a097190
+      m_Path: <Mouse>/scroll
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Scroll
+      m_Flags: 0
+    - m_Name: 
+      m_Id: cf9ea329-6bc4-4544-bcce-4904ad501499
+      m_Path: <Gamepad>/rightStick
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Scroll
+      m_Flags: 0
+    m_Flags: 0
 --- !u!114 &1846104908552231526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +328,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d503221e6cbf00341bb25934f7078bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  press:
+    m_Name: Press
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 1d51cfbd-dc70-4317-8c4c-19d6f12d1814
+    m_Processors: 
+    m_Interactions: Press
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d625e0a9-8d9e-4450-8d6d-9ea2df99822f
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 9b2720d4-6777-48e0-b62e-6aa4c27bb960
+      m_Path: <Gamepad>/rightTrigger
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    m_Flags: 0
+  screenPos:
+    m_Name: Screen Pos
+    m_Type: 0
+    m_ExpectedControlType: Vector2
+    m_Id: 4990c5dc-a44e-40cc-862c-f708b3d0cc79
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 1bc2ae88-3381-417d-823b-5efbcdd7a479
+      m_Path: <VirtualMouse>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Screen Pos
+      m_Flags: 0
+    m_Flags: 0
+  isDragging: 0
+  virtualMouse: {fileID: 0}
+  isOnSortItem: 0
 --- !u!64 &919867639793601038
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1353,6 +1470,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d503221e6cbf00341bb25934f7078bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  press:
+    m_Name: Press
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 1d51cfbd-dc70-4317-8c4c-19d6f12d1814
+    m_Processors: 
+    m_Interactions: Press
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d625e0a9-8d9e-4450-8d6d-9ea2df99822f
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 9b2720d4-6777-48e0-b62e-6aa4c27bb960
+      m_Path: <Gamepad>/rightTrigger
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    m_Flags: 0
+  screenPos:
+    m_Name: Screen Pos
+    m_Type: 0
+    m_ExpectedControlType: Vector2
+    m_Id: 4990c5dc-a44e-40cc-862c-f708b3d0cc79
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 1bc2ae88-3381-417d-823b-5efbcdd7a479
+      m_Path: <VirtualMouse>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Screen Pos
+      m_Flags: 0
+    m_Flags: 0
+  isDragging: 0
+  virtualMouse: {fileID: 0}
+  isOnSortItem: 0
 --- !u!114 &4720839726458720692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1365,6 +1527,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daae2e579b7c59442ab5eef18754e669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  released: 0
+  Checking: 0
   GuessingArea: {fileID: 2463045273363694583}
   ThisSlip: 4
   confirmButton: {fileID: 4711977721391446515}
@@ -1493,6 +1657,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d503221e6cbf00341bb25934f7078bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  press:
+    m_Name: Press
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 1d51cfbd-dc70-4317-8c4c-19d6f12d1814
+    m_Processors: 
+    m_Interactions: Press
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d625e0a9-8d9e-4450-8d6d-9ea2df99822f
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 9b2720d4-6777-48e0-b62e-6aa4c27bb960
+      m_Path: <Gamepad>/rightTrigger
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    m_Flags: 0
+  screenPos:
+    m_Name: Screen Pos
+    m_Type: 0
+    m_ExpectedControlType: Vector2
+    m_Id: 4990c5dc-a44e-40cc-862c-f708b3d0cc79
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 1bc2ae88-3381-417d-823b-5efbcdd7a479
+      m_Path: <VirtualMouse>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Screen Pos
+      m_Flags: 0
+    m_Flags: 0
+  isDragging: 0
+  virtualMouse: {fileID: 0}
+  isOnSortItem: 0
 --- !u!114 &8513087108542779274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1505,6 +1714,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daae2e579b7c59442ab5eef18754e669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  released: 0
+  Checking: 0
   GuessingArea: {fileID: 2463045273363694583}
   ThisSlip: 1
   confirmButton: {fileID: 4711977721391446515}
@@ -1633,6 +1844,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d503221e6cbf00341bb25934f7078bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  press:
+    m_Name: Press
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 1d51cfbd-dc70-4317-8c4c-19d6f12d1814
+    m_Processors: 
+    m_Interactions: Press
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d625e0a9-8d9e-4450-8d6d-9ea2df99822f
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 9b2720d4-6777-48e0-b62e-6aa4c27bb960
+      m_Path: <Gamepad>/rightTrigger
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    m_Flags: 0
+  screenPos:
+    m_Name: Screen Pos
+    m_Type: 0
+    m_ExpectedControlType: Vector2
+    m_Id: 4990c5dc-a44e-40cc-862c-f708b3d0cc79
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 1bc2ae88-3381-417d-823b-5efbcdd7a479
+      m_Path: <VirtualMouse>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Screen Pos
+      m_Flags: 0
+    m_Flags: 0
+  isDragging: 0
+  virtualMouse: {fileID: 0}
+  isOnSortItem: 0
 --- !u!114 &1994371096720622142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1645,6 +1901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daae2e579b7c59442ab5eef18754e669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  released: 0
+  Checking: 0
   GuessingArea: {fileID: 2463045273363694583}
   ThisSlip: 3
   confirmButton: {fileID: 4711977721391446515}

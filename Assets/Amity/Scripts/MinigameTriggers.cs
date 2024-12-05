@@ -34,14 +34,14 @@ public class MinigameTriggers : MonoBehaviour
             {
                 case 0: 
                     other.gameObject.GetComponent<PlayerMovementOnMap>().nearPrint = false;
-                    if (gameManager.Active)
+                    if (gameManager.PrintActive)
                     {
                         gameManager.PrintMinigame();
                     }
                 break;
                 case 1: 
                     other.gameObject.GetComponent<PlayerMovementOnMap>().nearSort  = false;
-                    if (gameManager.Active)
+                    if (gameManager.SortingActive)
                     {
                         gameManager.SortingMinigame();
                     }

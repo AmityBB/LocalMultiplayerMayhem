@@ -18,17 +18,19 @@ public class WinSystem : MonoBehaviour
     public int roomChose;
     public int weaponChose;
 
-    [SerializeField] private TextMeshProUGUI people;
-    [SerializeField] private TextMeshProUGUI rooms;
-    [SerializeField] private TextMeshProUGUI weapons;
-
     [SerializeField] private Image imageKiller;
     [SerializeField] private Image imageRoom;
     [SerializeField] private Image imageWeapon;
 
-    [SerializeField] private List<Sprite> imagePeopleList;
-    [SerializeField] private List<Sprite> imageRoomList;
-    [SerializeField] private List<Sprite> imageWeaponList;
+    [SerializeField] private List<Image> imageChosePeople;
+    [SerializeField] private List<Image> imageChoseRooms;
+    [SerializeField] private List<Image> imageChoseWeapons;
+
+    [SerializeField] private List<Sprite> spritePeopleList;
+    [SerializeField] private List<Sprite> spriteRoomList;
+    [SerializeField] private List<Sprite> spriteWeaponList;
+
+    public List<GameObject> roomBloodPrintPanels;
 
     public float choosTime = 0;
     public bool canChoos = false;
@@ -47,13 +49,20 @@ public class WinSystem : MonoBehaviour
     }
     private void Start()
     {
-        rand();
+        Rand();
+        for (int i = 0; i < spritePeopleList.Count; i++)
+        {
+            imageChosePeople[i].sprite = spritePeopleList[i];
+            imageChoseRooms[i].sprite = spriteRoomList[i];
+            imageChoseWeapons[i].sprite = spriteWeaponList[i];
+        }
     }
-    private void rand()//chose who, where and what is the culprit
+    private void Rand()//chose who, where and what is the culprit
     {
         killerK = Random.Range(0, People.Count);
         roomK = Random.Range(0, Rooms.Count);
         weaponK = Random.Range(0, Weapons.Count);
+        roomBloodPrintPanels[roomK].SetActive(true);
     }
     private void Update()
     {
@@ -66,12 +75,9 @@ public class WinSystem : MonoBehaviour
             canChoos = false;
             choosTime += Time.deltaTime;
         }
-        people.text = "Person:" + killerChose;
-        rooms.text = "room:"+ roomChose;
-        weapons.text = "weapon:" + weaponChose;
-        imageKiller.sprite = imagePeopleList[killerChose];
-        imageRoom.sprite = imageRoomList[roomChose];
-        imageWeapon.sprite = imageWeaponList[weaponChose];
+        imageKiller.sprite = spritePeopleList[killerChose];
+        imageRoom.sprite = spriteRoomList[roomChose];
+        imageWeapon.sprite = spriteWeaponList[weaponChose];
     }
 }
 

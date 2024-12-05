@@ -7,8 +7,8 @@ public class Winbutton : MonoBehaviour
     public int killerPick;
     public int roomPick;
     public int weaponPick;
-    WinSystem winSystem;
-    CameraScript cameraScript;
+    private WinSystem winSystem;
+    private CameraScript cameraScript;
 
     private void Start()
     {

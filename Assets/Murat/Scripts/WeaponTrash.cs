@@ -8,14 +8,14 @@ public class WeaponTrash : MonoBehaviour
     private Vector3 offset;
 
     [SerializeField] private bool isTrash;
-    [SerializeField] private bool done= false;
+    [SerializeField] public bool done= false;
     [SerializeField] private bool done2 = false;
     [SerializeField] private bool correct = false;
-    [SerializeField] private bool pickUp = false;
+    public bool pickUp = false;
     private SorteerMinigame SorteerMinigame;
     [SerializeField] private GameObject table;
 
-    float extraHeight = 1;
+    float extraHeight = 0.5f;
     private void OnMouseDown()
     {
         if (!done)
@@ -28,7 +28,7 @@ public class WeaponTrash : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (!done && pickUp) 
+        if (!done && pickUp)
         {
             Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
             Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
@@ -42,11 +42,11 @@ public class WeaponTrash : MonoBehaviour
     }
     void Update()
     {
-        screanwrap();//om te verkomen dat het van de tafel af komt
+        Screanwrap();//om te verkomen dat het van de tafel af komt
         NotDone();//wanneer je niet op de juiste plek heb gezet
         Done();//wanneer je wel op de juiste plek heb gezet
     }
-    void screanwrap()
+    void Screanwrap()
     {
         float extraDist = 3.5f;
         if (!done)
@@ -74,22 +74,22 @@ public class WeaponTrash : MonoBehaviour
             {
                 if (gameObject.transform.position.x > checkSides + table.transform.position.x)
                 {
-                    getpoints();
+                    Getpoints();
                 }
                 else if (gameObject.transform.position.x < -checkSides + table.transform.position.x)
                 {
-                    getdeathPoints();
+                    GetdeathPoints();
                 }
             }
             if (!isTrash)
             {
                 if (gameObject.transform.position.x < -checkSides + table.transform.position.x)
                 {
-                    getpoints();
+                    Getpoints();
                 }
                 else if (gameObject.transform.position.x > checkSides + table.transform.position.x)
                 {
-                    getdeathPoints();
+                    GetdeathPoints();
                 }
             }
         }
@@ -108,12 +108,14 @@ public class WeaponTrash : MonoBehaviour
                     SorteerMinigame.trash.Add(gameObject);
                     transform.position = new Vector3(doneSide + table.transform.position.x, table.transform.position.y + extraHeight, correctDist + SorteerMinigame.trash.Count*-correctExtraDist + table.transform.position.z);
                     done2 = true;
+                    GetComponent<MouseDraggingScript>().isDragging = false;
                 }
                 else if(!correct)
                 {
                     done = false;
                     transform.position = new Vector3(Random.Range(-1,2) + table.transform.position.x, table.transform.position.y + extraHeight, Random.Range(-1, 2) + table.transform.position.z);
                     pickUp = false;
+                    GetComponent<MouseDraggingScript>().isDragging = false;
                 }
             }
             else
@@ -124,23 +126,25 @@ public class WeaponTrash : MonoBehaviour
                     SorteerMinigame.weapons.Add(gameObject);
                     transform.position = new Vector3(-doneSide + table.transform.position.x, table.transform.position.y + extraHeight, correctDist + SorteerMinigame.weapons.Count * -correctExtraDist + table.transform.position.z);
                     done2 = true;
+                    GetComponent<MouseDraggingScript>().isDragging = false;
                 }
                 else if(!correct)
                 {
                     done = false;
                     transform.position = new Vector3(Random.Range(-1, 2) + table.transform.position.x, table.transform.position.y + extraHeight, Random.Range(-1, 2) + table.transform.position.z);
                     pickUp = false;
+                    GetComponent<MouseDraggingScript>().isDragging = false;
                 }
             }
         }
     }
-    void getpoints()//je krijgt winpunten
+    void Getpoints()//je krijgt winpunten
     {
         SorteerMinigame.points++;
         done = true;
         correct = true;
     }
-    void getdeathPoints()//je krijgt verliespunten
+    void GetdeathPoints()//je krijgt verliespunten
     {
         SorteerMinigame.deathPoints++;
         done = true;

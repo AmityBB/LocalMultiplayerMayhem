@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1198782356355046489}
   - component: {fileID: 6510192091032758244}
   - component: {fileID: 6540380130817730694}
+  - component: {fileID: -1245596593366442021}
   m_Layer: 0
   m_Name: trash1
   m_TagString: Untagged
@@ -124,3 +125,60 @@ MonoBehaviour:
   correct: 0
   pickUp: 0
   table: {fileID: 0}
+--- !u!114 &-1245596593366442021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68915053535246697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d503221e6cbf00341bb25934f7078bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  press:
+    m_Name: Press
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 1d51cfbd-dc70-4317-8c4c-19d6f12d1814
+    m_Processors: 
+    m_Interactions: Press
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d625e0a9-8d9e-4450-8d6d-9ea2df99822f
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 9b2720d4-6777-48e0-b62e-6aa4c27bb960
+      m_Path: <Gamepad>/rightTrigger
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    m_Flags: 0
+  screenPos:
+    m_Name: Screen Pos
+    m_Type: 0
+    m_ExpectedControlType: Vector2
+    m_Id: 4990c5dc-a44e-40cc-862c-f708b3d0cc79
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 1bc2ae88-3381-417d-823b-5efbcdd7a479
+      m_Path: <VirtualMouse>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Screen Pos
+      m_Flags: 0
+    m_Flags: 0
+  isDragging: 0
+  virtualMouse: {fileID: 0}
+  isOnSortItem: 1
