@@ -45,6 +45,7 @@ public class MagGlassScript : MonoBehaviour
             ScrollDir.y = -1;
         }
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + ScrollDir.y * scale);
+        ScrollDir.y = 0;
         if (Math.Abs(transform.position.z - TargetZoom) < 0.05)
         {
             if (picked)

@@ -290,7 +290,7 @@ MonoBehaviour:
   Distance: 4
   TargetZoom: -35.43988
   MagView: {fileID: 5634580332298444474}
-  scale: 0.008
+  scale: 0.012
   Scroll:
     m_Name: Scroll
     m_Type: 0
