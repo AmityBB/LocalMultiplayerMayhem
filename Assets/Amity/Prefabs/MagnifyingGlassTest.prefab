@@ -138,23 +138,7 @@ MonoBehaviour:
       m_Flags: 0
     - m_Name: 
       m_Id: 9b2720d4-6777-48e0-b62e-6aa4c27bb960
-      m_Path: <SwitchProControllerHID>/buttonEast
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 5ff036cf-db9f-44a5-8beb-05fba0711185
-      m_Path: <XInputController>/buttonEast
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 25206224-d99d-4839-bbcb-5a7eccc3e3c7
-      m_Path: <DualShockGamepad>/buttonEast
+      m_Path: <Gamepad>/rightTrigger
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -171,14 +155,16 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 1bc2ae88-3381-417d-823b-5efbcdd7a479
-      m_Path: <Mouse>/position
+      m_Path: <VirtualMouse>/position
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Screen Pos
       m_Flags: 0
     m_Flags: 0
+  isDragging: 0
   virtualMouse: {fileID: 0}
+  isOnSortItem: 0
 --- !u!114 &3329710176688401496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,7 +308,7 @@ MonoBehaviour:
       m_Action: Scroll
       m_Flags: 0
     - m_Name: 
-      m_Id: 2d009032-3ec1-4094-a6e8-36fec4bdd7e8
+      m_Id: cf9ea329-6bc4-4544-bcce-4904ad501499
       m_Path: <Gamepad>/rightStick
       m_Interactions: 
       m_Processors: 
@@ -360,23 +346,7 @@ MonoBehaviour:
       m_Flags: 0
     - m_Name: 
       m_Id: 9b2720d4-6777-48e0-b62e-6aa4c27bb960
-      m_Path: <SwitchProControllerHID>/buttonEast
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 5ff036cf-db9f-44a5-8beb-05fba0711185
-      m_Path: <XInputController>/buttonEast
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 25206224-d99d-4839-bbcb-5a7eccc3e3c7
-      m_Path: <DualShockGamepad>/buttonEast
+      m_Path: <Gamepad>/rightTrigger
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -400,7 +370,9 @@ MonoBehaviour:
       m_Action: Screen Pos
       m_Flags: 0
     m_Flags: 0
+  isDragging: 0
   virtualMouse: {fileID: 0}
+  isOnSortItem: 0
 --- !u!64 &919867639793601038
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1516,23 +1488,7 @@ MonoBehaviour:
       m_Flags: 0
     - m_Name: 
       m_Id: 9b2720d4-6777-48e0-b62e-6aa4c27bb960
-      m_Path: <SwitchProControllerHID>/buttonEast
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 5ff036cf-db9f-44a5-8beb-05fba0711185
-      m_Path: <XInputController>/buttonEast
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 25206224-d99d-4839-bbcb-5a7eccc3e3c7
-      m_Path: <DualShockGamepad>/buttonEast
+      m_Path: <Gamepad>/rightTrigger
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -1549,14 +1505,16 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 1bc2ae88-3381-417d-823b-5efbcdd7a479
-      m_Path: <Mouse>/position
+      m_Path: <VirtualMouse>/position
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Screen Pos
       m_Flags: 0
     m_Flags: 0
+  isDragging: 0
   virtualMouse: {fileID: 0}
+  isOnSortItem: 0
 --- !u!114 &4720839726458720692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1717,23 +1675,7 @@ MonoBehaviour:
       m_Flags: 0
     - m_Name: 
       m_Id: 9b2720d4-6777-48e0-b62e-6aa4c27bb960
-      m_Path: <SwitchProControllerHID>/buttonEast
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 5ff036cf-db9f-44a5-8beb-05fba0711185
-      m_Path: <XInputController>/buttonEast
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 25206224-d99d-4839-bbcb-5a7eccc3e3c7
-      m_Path: <DualShockGamepad>/buttonEast
+      m_Path: <Gamepad>/rightTrigger
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -1750,14 +1692,16 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 1bc2ae88-3381-417d-823b-5efbcdd7a479
-      m_Path: <Mouse>/position
+      m_Path: <VirtualMouse>/position
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Screen Pos
       m_Flags: 0
     m_Flags: 0
+  isDragging: 0
   virtualMouse: {fileID: 0}
+  isOnSortItem: 0
 --- !u!114 &8513087108542779274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1918,23 +1862,7 @@ MonoBehaviour:
       m_Flags: 0
     - m_Name: 
       m_Id: 9b2720d4-6777-48e0-b62e-6aa4c27bb960
-      m_Path: <SwitchProControllerHID>/buttonEast
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 5ff036cf-db9f-44a5-8beb-05fba0711185
-      m_Path: <XInputController>/buttonEast
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 25206224-d99d-4839-bbcb-5a7eccc3e3c7
-      m_Path: <DualShockGamepad>/buttonEast
+      m_Path: <Gamepad>/rightTrigger
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -1951,14 +1879,16 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 1bc2ae88-3381-417d-823b-5efbcdd7a479
-      m_Path: <Mouse>/position
+      m_Path: <VirtualMouse>/position
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Screen Pos
       m_Flags: 0
     m_Flags: 0
+  isDragging: 0
   virtualMouse: {fileID: 0}
+  isOnSortItem: 0
 --- !u!114 &1994371096720622142
 MonoBehaviour:
   m_ObjectHideFlags: 0

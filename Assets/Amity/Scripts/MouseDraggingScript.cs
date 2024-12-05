@@ -15,11 +15,12 @@ public class MouseDraggingScript : MonoBehaviour
     private Vector3 curScreenPos;
 
     Camera cam;
-    private bool isDragging;
+    public bool isDragging;
 
     [SerializeField]
     private GameObject virtualMouse;
-
+    [SerializeField]
+    private bool isOnSortItem;
     private Vector3 WorldPos
     {
         get
@@ -49,19 +50,33 @@ public class MouseDraggingScript : MonoBehaviour
         screenPos.Enable();
         press.Enable();
         screenPos.performed += context => { curScreenPos = context.ReadValue<Vector2>(); };
-        press.performed += _ => { if (isClickedOn) StartCoroutine(Drag()); };
+        press.performed += _ => { if (isOnSortItem) { if (gameObject.GetComponent<WeaponTrash>().done == false) { if (isClickedOn) isDragging = true; StartCoroutine(Drag()); gameObject.GetComponent<WeaponTrash>().pickUp = true; } } else { if (isClickedOn) isDragging = true; StartCoroutine(Drag()); } };
         press.canceled += _ => { isDragging = false; };
     }
    
 
     private IEnumerator Drag()
     {
-        isDragging = true;
-        Vector3 offset = transform.position - WorldPos;
-        while (isDragging)
+        if (isOnSortItem)
         {
-            transform.position = WorldPos + offset;
-            yield return null;
+            if (GetComponent<WeaponTrash>().done == false && GetComponent<WeaponTrash>().pickUp == true)
+            {
+                
+                Vector3 offset = transform.position - WorldPos;
+                while (isDragging)
+                {
+                    transform.position = WorldPos + offset;
+                    yield return null;
+                }
+            }
+        }
+        else{
+            Vector3 offset = transform.position - WorldPos;
+            while (isDragging)
+            {
+                transform.position = WorldPos + offset;
+                yield return null;
+            }
         }
     }
 
