@@ -6,6 +6,7 @@ public class SorteerMinigame : MonoBehaviour
 {
     [SerializeField] private List<GameObject> setWeapons;
     [SerializeField] private List<GameObject> setTrash;
+    [SerializeField] private List<GameObject> showWeapon;
     public List<GameObject> weapons;
     public List<GameObject> trash;
     public GameObject table;
@@ -36,7 +37,7 @@ public class SorteerMinigame : MonoBehaviour
                     Collider[] collider = Physics.OverlapSphere(position, radius);
                     if (collider.Length == 0)
                     {
-                        Instantiate(setTrash[x], position, Quaternion.identity);
+                        Instantiate(setTrash[x], position, Quaternion.Euler(0,180,0));
                         x += 1;
                     }
                 }
@@ -47,7 +48,7 @@ public class SorteerMinigame : MonoBehaviour
                     Collider[] collider = Physics.OverlapSphere(position, radius);
                     if (collider.Length == 0)
                     {
-                        Instantiate(setWeapons[y], position, Quaternion.identity);
+                        Instantiate(setWeapons[y], position, Quaternion.Euler(0,180,0));
                         y += 1;
                     }
                 }
@@ -56,6 +57,7 @@ public class SorteerMinigame : MonoBehaviour
 
             if(points>= setWeapons.Count+ setTrash.Count && !done)
             {
+                Instantiate(showWeapon[system.weaponK], new Vector3(transform.position.x, transform.position.y + 3, transform.position.z), Quaternion.Euler(0,-90,-90), this.transform);
                 Debug.Log("you win");
                 Debug.Log(system.Weapons[system.weaponK]);
                 done = true;

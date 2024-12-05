@@ -136,8 +136,8 @@ public class Test : MonoBehaviour
         {
             
             stepsLeftCan.GetComponent<Canvas>().enabled = false;
-            Cam.transform.rotation = new Quaternion(0, 0, 0, 0);
-            clone = Instantiate(Minigames[0], Cam.transform.position + (Cam.transform.forward * 16), Quaternion.identity);
+            Cam.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+            clone = Instantiate(Minigames[0], Cam.transform.position + (Cam.transform.forward * 16), Quaternion.Euler(90,0,0));
             PrintActive = true;
             player[playerWithTurn].GetComponent<PlayerMovementOnMap>().canMove = false;
         }

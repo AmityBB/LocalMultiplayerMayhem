@@ -33,16 +33,16 @@ public class PlayerMovementOnMap : Player
         PlayerBlocker.enabled = true;
         switch (gameManager.player.Count)
         {
-            case 1: this.transform.position = new Vector3(5, 3.2f, -35);
+            case 1: this.transform.position = new Vector3(4.5f, 3.2f, -34.5f);
                 ColorSpot.GetComponent<Renderer>().material.color = Color.red;
                 break;
-            case 2: this.transform.position = new Vector3(-5, 3.2f, -35);
+            case 2: this.transform.position = new Vector3(-5.5f, 3.2f, -34.5f);
                 ColorSpot.GetComponent<Renderer>().material.color = Color.blue;
                 break;
-            case 3: this.transform.position = new Vector3(-5, 3.2f, -25);
+            case 3: this.transform.position = new Vector3(-5.5f, 3.2f, -24.5f);
                 ColorSpot.GetComponent<Renderer>().material.color = Color.green;
                 break;
-            case 4: this.transform.position = new Vector3(5, 3.2f, -25);
+            case 4: this.transform.position = new Vector3(4.5f, 3.2f, -24.5f);
                 ColorSpot.GetComponent<Renderer>().material.color = Color.yellow;
                 break;
         }
