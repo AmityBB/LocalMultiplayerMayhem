@@ -18,6 +18,8 @@ public class GeneralButtons : MonoBehaviour
     {
         inputManager.SetActive(false);
         gameManager.TitleScreen.GetComponent<Canvas>().enabled = false;
+        gameManager.TitleBackground.GetComponent<Canvas>().enabled = false;
+        gameManager.Titlecam.GetComponent<Camera>().enabled = false;
         gameManager.StartRound();
     }
 }

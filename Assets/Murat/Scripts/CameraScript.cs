@@ -15,20 +15,19 @@ public class CameraScript : MonoBehaviour
     private bool nearMinigame = false;
 
     public bool playerTime;
-    [SerializeField] private bool gessing;
+    public bool guessing;
     [SerializeField] private List<GameObject> gesScreens;
     private bool done = false;
    
 
     void Start()
     {
-        m_Camera = GetComponent<Camera>();
         gameMaster = FindObjectOfType<Test>();
     }
 
     void Update()
     {
-        if (!gessing)
+        if (!guessing)
         {
             done = false;
         }
@@ -45,7 +44,7 @@ public class CameraScript : MonoBehaviour
                 nearMinigame = true;
             }
         }
-        if (gessing)
+        if (guessing)
         {
             float hight = 10f;
             float distZ = -2;
@@ -68,14 +67,14 @@ public class CameraScript : MonoBehaviour
         else if (gameMaster.SortingActive)//sorteer minigame
         {
             sorteer = FindObjectOfType<SorteerMinigame>();
-            m_Camera.transform.position = new Vector3(sorteer.table.transform.position.x, sorteer.table.transform.position.y + 10, -10 + sorteer.table.transform.position.z);
-            m_Camera.transform.rotation = Quaternion.Euler(45, 0, 0);
+            m_Camera.transform.position = new Vector3(sorteer.table.transform.position.x, sorteer.table.transform.position.y + 10, sorteer.table.transform.position.z);
+            m_Camera.transform.rotation = Quaternion.Euler(90, 0, 0);
         }
         else if (gameMaster.PrintActive)//fingerprint minigame
         {
             //m_Camera.transform.position = new Vector3(m_Printgame.transform.position.x, m_Printgame.transform.position.y, m_Printgame.transform.position.z - 16);
-            m_Camera.transform.position = new Vector3(m_Map.transform.position.x, m_Map.transform.position.y + 90, m_Map.transform.position.z + -45);
-            m_Camera.transform.rotation = Quaternion.Euler(0, 0, 0);
+            m_Camera.transform.position = new Vector3(m_Map.transform.position.x, m_Map.transform.position.y + 90, m_Map.transform.position.z + -37);
+            m_Camera.transform.rotation = Quaternion.Euler(90, 0, 0);
         }
         else if (gameMaster.UVActive)//kamer minigame
         {

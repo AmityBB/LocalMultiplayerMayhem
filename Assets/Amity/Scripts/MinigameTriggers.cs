@@ -22,6 +22,7 @@ public class MinigameTriggers : MonoBehaviour
                 case 0: other.gameObject.GetComponent<PlayerMovementOnMap>().nearPrint = true; break;
                 case 1: other.gameObject.GetComponent<PlayerMovementOnMap>().nearSort  = true; break;
                 case 2: other.gameObject.GetComponent<PlayerMovementOnMap>().nearUV    = true; break;
+                case 3: other.gameObject.GetComponent<PlayerMovementOnMap>().nearGuess = true; break;
             }
         }
     }
@@ -48,7 +49,10 @@ public class MinigameTriggers : MonoBehaviour
                 break;
                 case 2: 
                     other.gameObject.GetComponent<PlayerMovementOnMap>().nearUV    = false;
-                    break;
+                break;
+                case 3:
+                    other.gameObject.GetComponent<PlayerMovementOnMap>().nearGuess = false;
+                break;
             }
         }
     }

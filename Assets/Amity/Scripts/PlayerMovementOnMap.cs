@@ -18,6 +18,7 @@ public class PlayerMovementOnMap : Player
     public bool nearPrint;
     public bool nearSort;
     public bool nearUV;
+    public bool nearGuess;
     public bool moving;
     
     private LayerMask layerMask;
@@ -33,16 +34,16 @@ public class PlayerMovementOnMap : Player
         PlayerBlocker.enabled = true;
         switch (gameManager.player.Count)
         {
-            case 1: this.transform.position = new Vector3(5, 3.2f, -35);
+            case 1: this.transform.position = new Vector3(4.5f, 3.2f, -34.5f);
                 ColorSpot.GetComponent<Renderer>().material.color = Color.red;
                 break;
-            case 2: this.transform.position = new Vector3(-5, 3.2f, -35);
+            case 2: this.transform.position = new Vector3(-5.5f, 3.2f, -34.5f);
                 ColorSpot.GetComponent<Renderer>().material.color = Color.blue;
                 break;
-            case 3: this.transform.position = new Vector3(-5, 3.2f, -25);
+            case 3: this.transform.position = new Vector3(-5.5f, 3.2f, -24.5f);
                 ColorSpot.GetComponent<Renderer>().material.color = Color.green;
                 break;
-            case 4: this.transform.position = new Vector3(5, 3.2f, -25);
+            case 4: this.transform.position = new Vector3(4.5f, 3.2f, -24.5f);
                 ColorSpot.GetComponent<Renderer>().material.color = Color.yellow;
                 break;
         }
@@ -104,6 +105,10 @@ public class PlayerMovementOnMap : Player
             {
                 gameManager.UVMinigame();
             }
+            if (nearGuess)
+            {
+                gameManager.GuessMinigame();
+            }
             if (gameManager.UVActive && Stepsleft == 0)
             {
                 gameManager.TurnEnd();
@@ -124,7 +129,6 @@ public class PlayerMovementOnMap : Player
     {
         if (_context.performed && Stepsleft > 0 && canMove && gameObject.GetComponent<PlayerMovementOnMap>().enabled && gameManager.UVActive == false)
         {
-            Debug.Log(_context);
             if (_context.ReadValue<Vector2>().x != 0)
             {
                 MoveDir.x = _context.ReadValue<Vector2>().x * 10;

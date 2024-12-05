@@ -6,13 +6,13 @@ public class Tempbuttonscript : MonoBehaviour
 {
     public int Picked;
     public int CorrectSlip;
-    /*[SerializeField] private WinSystem gameManager;*/
+    [SerializeField] private WinSystem gameManager;
     [SerializeField] private int strikes = 3;
 
     private void Start()
     {
-        /*gameManager = FindObjectOfType<WinSystem>();*/
-        CorrectSlip = /*gameManager.killerK;*/ Random.Range(1, 5);
+        gameManager = FindObjectOfType<WinSystem>();
+        CorrectSlip = gameManager.killerK + 1;
     }
 
     public void Confirm()
@@ -31,7 +31,7 @@ public class Tempbuttonscript : MonoBehaviour
             strikes--;
             if(strikes == 0)
             {
-                /*player with turn loses*/
+                Destroy(gameManager.gameObject.GetComponent<Test>().player[gameManager.gameObject.GetComponent<Test>().playerWithTurn]);
             }
         }
     }

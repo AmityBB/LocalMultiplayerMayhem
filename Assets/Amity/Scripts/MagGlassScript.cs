@@ -20,6 +20,10 @@ public class MagGlassScript : MonoBehaviour
     private bool picked = false;
     [SerializeField] private InputAction Scroll;
     private Vector2 ScrollDir;
+    [SerializeField]
+    private float maxZoom;
+    [SerializeField]
+    private float minZoom;
  
 
     private void Awake()
@@ -30,22 +34,25 @@ public class MagGlassScript : MonoBehaviour
     }
     private void Start()
     {
-        TargetZoom = UnityEngine.Random.Range(-34.01004f, -36.81f);
+        maxZoom = 81;
+        minZoom = 79;
+        TargetZoom = UnityEngine.Random.Range(minZoom, maxZoom);
     }
 
     private void Update()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Clamp(transform.position.z, -36.81f, -34.01004f));
-        if(ScrollDir.y > 1)
+        if (ScrollDir.y > 1)
         {
-            ScrollDir.y =1;
+            ScrollDir.y = 1;
         }
         if (ScrollDir.y < -1)
         {
             ScrollDir.y = -1;
         }
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + ScrollDir.y * scale);
-        if (Math.Abs(transform.position.z - TargetZoom) < 0.05)
+        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, minZoom, maxZoom), transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y - ScrollDir.y * scale, transform.position.z);
+        ScrollDir.y = 0;
+        if (Math.Abs(transform.position.y - TargetZoom) < 0.05)
         {
             if (picked)
             {
@@ -54,7 +61,7 @@ public class MagGlassScript : MonoBehaviour
             }
             else
             {
-                TargetZoom = UnityEngine.Random.Range(-34.01004f, -36.81f);
+                TargetZoom = UnityEngine.Random.Range(maxZoom, minZoom);
             }
         }
         else
